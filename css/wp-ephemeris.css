@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'AstroDotBasic';
+  src: url('astrodotbasic.eot');
+  src: url('astrodotbasic.eot?#iefix') format('embedded-opentype'),
+       url('astrodotbasic.woff') format('woff'),
+       url('astrodotbasic.ttf') format('truetype'),
+       url('astrodotbasic.svg#AstroDotBasic') format('svg');
+}
+
+.zodiac-sign {
+  font-family: 'AstroDotBasic',sans-serif;
+}
