@@ -1,13 +1,4 @@
 <?php
-/*
-Plugin Name: WordPress Ephemeris Calculator
-Plugin URI: http://andrewsfreeman.com/wordpress-ephemeris
-Description: Adds shortcode and ajax requests for short zodiacs. SEE README.
-Version: 0.1
-Author: andrewsfreeman
-Author URI: http://andrewsfreeman.com
-License: GPL2
-*/
 
 class WPephemeris {
 
@@ -29,31 +20,31 @@ class WPephemeris {
 		),
 		2 => array(
 			'name'=> 'Mercury',
-			#'symbol' => '☿',
+			'symbol' => '☿',
 			'html' => '&#x263F;',
 			'letter' => 'C'
 		),
 		3 => array(
 			'name' => 'Venus',
-			#'symbol' => '♀',
+			'symbol' => '♀',
 			'html' => '&#x2640;',
 			'letter' => 'D'
 		),
 		4 => array(
 			'name' => 'Mars',
-			#'symbol' => '♂',
+			'symbol' => '♂',
 			'html' => '&#x2642;',
 			'letter' => 'E'
 		),
 		5 => array(
 			'name' => 'Jupiter',
-			#'symbol' => '♃',
+			'symbol' => '♃',
 			'html' => '&#x2643;',
 			'letter' => 'F'
 		),
 		6 => array(
 			'name' => 'Saturn',
-			#'symbol' => '♄',
+			'symbol' => '♄',
 			'html' => '&#x2644;',
 			'letter' => 'G'
 		),
@@ -63,97 +54,96 @@ class WPephemeris {
 	public $zodiac = array(
 		'ar' => array(
 			'name' => 'Aries',
-			#'symbol' => '♈',
+			'symbol' => '♈',
 			'html' => '&# x2648;',
 			'letter' => 'a'
 		),
 		'ta' => array(
 			'name' => 'Taurus',
-			#'symbol' => '♉',
+			'symbol' => '♉',
 			'html' => '&#x2649;',
 			'letter' => 'b'
 		),
 		'ge' => array(
 			'name' => 'Gemini',
-			#'symbol' => '♊',
+			'symbol' => '♊',
 			'html' => '&#x264a;',
 			'letter' => 'c'
 		),
 		'cn' => array(
 			'name' => 'Cancer',
-			#'symbol' => '♋',
+			'symbol' => '♋',
 			'html' => '&#x264b;',
 			'letter' => 'd'
 		),
 		'le' => array(
 			'name' => 'Leo',
-			#'symbol' => '♌',
+			'symbol' => '♌',
 			'html' => '&#x264c;',
 			'letter' => 'e'
 		),
 		'vi' => array(
 			'name' => 'Virgo',
-			#'symbol' => '♍',
+			'symbol' => '♍',
 			'html' => '&#x264d;',
 			'letter' => 'f'
 		),
 		'li' => array(
 			'name' => 'Libra',
-			#'symbol' => '♎',
+			'symbol' => '♎',
 			'html' => '&#x264e;',
 			'letter' => 'g'
 		),
 		'sc' => array(
 			'name' => 'Scorpio',
-			#'symbol' => '♏',
+			'symbol' => '♏',
 			'html' => '&#x264f;',
 			'letter' => 'h'
 		),
 		'sa' => array(
 			'name' => 'Sagittarius',
-			#'symbol' => '♐',
+			'symbol' => '♐',
 			'html' => '&#x2650;',
 			'letter' => 'i'
 		),
 		'cp' => array(
 			'name' => 'Capricorn',
-			#'symbol' => '♑',
+			'symbol' => '♑',
 			'html' => '&#x2651;',
 			'letter' => 'j'
 		),
 		'aq' => array(
 			'name' => 'Aquarius',
-			#'symbol' => '♒',
+			'symbol' => '♒',
 			'html' => '&#x2652;',
 			'letter' => 'k'
 		),
 		'pi' => array(
 			'name' => 'Pisces',
-			#'symbol' => '♓',
+			'symbol' => '♓',
 			'html' => '&#x2653;',
 			'letter' => 'l'
 		),
 	);
 
 	##
-	# __construct()   sets up the whole show for WordPress
+	# __construct()
 	# 
-	# adds the shortcode, activates shortcode use in widgets, adds ajax requests
 	##
 	public function __construct() {
-		add_shortcode( 'wp-ephemeris', array( 'WPephemeris', 'get_zodiac' ) );
-		add_shortcode( 'thelemic-date', array( 'WPephemeris', 'thelemic_date' ) );
-		add_filter( 'widget_text', 'do_shortcode', 11 );
-		add_action( 'wp_ajax_nopriv_wpephemeris', array( $this, 'get_zodiac' ) );
-		add_action( 'wp_ajax_wpephemeris', array( $this, 'get_zodiac' ) );
-		add_action( 'wp_ajax_date93', array( $this, 'thelemic_date' ) );
-		add_action( 'wp_ajax_nopriv_date93', array( $this, 'thelemic_date' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+		switch $_REQUEST['action'] {
+			case 'thelemic_date' :
+				$this->thelemic_date();
+				break;
+			case 'zodiac_chart' :
+				$this->get_zodiac();
+				break;
+		}
 	}
 
 	public function get_chart( $date, $time ) {
 		# run swetest with date information and separate out results by newlines
-		$swetest = plugin_dir_path( __FILE__ ) . 'src/swetest';
+		$swetest = 'src/swetest';
 		$result = `$swetest -b$date -t$time -fTZ -roundmin -head 2>&1`;
 		$chart = explode( "\n", $result );
 
@@ -173,26 +163,16 @@ class WPephemeris {
 	# 
 	# timeutc="" and date="" attributes given as dd.mm.yyyy and hh.mmss
 	##
-	public function get_zodiac( $args ) {
+	public function get_zodiac() {
 
-		extract( shortcode_atts( array(
-			'date' => date( 'd.m.Y' ),
-			'time' => date( 'H.i' ),
-			'svg' => '0'
-		), $args ) );
-
-		# if it's an AJAX request, parse the GET variables.
-		if ( defined( 'DOING_AJAX' ) ) :
-			$date = $_GET['date'] ? $_GET['date'] : $date;
-			$timeutc = $_GET['timeutc'] ? $_GET['timeutc'] : "00.0000";
-		endif;
+		$date = $_GET['date'] ? $_GET['date'] : date( 'd.m.Y' );
+		$timeutc = $_GET['timeutc'] ? $_GET['timeutc'] : date( 'H.i' );
 
 		$wpephem = new WPephemeris();
-		$output = "";
-		
 		$chart = $wpephem->get_chart( $date, $time );
-		$output .= "<span class='wp-ephemeris'>"; # for the shortcode
-		$json = array(); # for ajax request
+
+		$output .= "<span class='wp-ephemeris'>"; # for html request
+		$json = array(); # for json request
 
 		foreach( $wpephem->planets as $index => $planet ) :
 			$deg = substr( $chart[$index], 0, 2 ); # degrees is first two chars
@@ -216,63 +196,23 @@ class WPephemeris {
 
 		reset( $wpephem->planets );
 		
-		# ajax request?
-		if ( defined( 'DOING_AJAX' ) ):
+		# json request?
+		if ( 'json' == $_REQUEST['format'] ) ) :
 			echo json_encode( $json );
 			exit();
 		endif;
-
-		# shortcode
-		return $output;
+		echo $output;
+		exit();
 	}
 
 	function wingding( $letter ) {
 		return '<span class="zodiac-sign">' . $letter . '</span>';
 	}
 
+	function thelemic_date() {
 
-	##
-	# wp_head - enqueues wp-ephemeris.css
-	##
-	function wp_enqueue_scripts() {
-		wp_enqueue_style( 'wp-ephemeris', plugin_dir_url( __FILE__  ) . 'css/wp-ephemeris.css' );
-		wp_enqueue_script( 'wp-ephemeris-js', plugin_dir_url( __FILE__  ) . 'js/wp-ephemeris.js',
-			array( 'jquery' ) , $ver = '0.01', false );
-		wp_enqueue_script( 'suncalc-js', plugin_dir_url( __FILE__  ) . 'js/suncalc.js',
-			array( 'jquery' ) , $ver = '0.01', false );
-		wp_enqueue_script( 'jquery-ui-datepicker' );
-	}
-
-	function thelemic_date( $args ) {
-  		extract( shortcode_atts( array(
-			'date' => date( 'd.m.Y' ),
-			'time' => date( 'H.i' ),
-			'single' => false,
-			'days' => 30
-		), $args ) );
-
-		# if it's an AJAX request, parse the GET variables.
-		if ( defined( 'DOING_AJAX' ) ) :
-			$date = $_GET['date'] ? $_GET['date'] : $date;
-			$time = $_GET['timeutc'] ? $_GET['timeutc'] : "00.0000";
-			echo WPephemeris::get_thelemic_date( $date, $time );
-			exit();
-		endif;
-
-  		if ( $single )
-	  		return WPephemeris::get_thelemic_date( $date, $time );
-
-		for ( $i = 0; $i < $days ; $i++ ) {
-			$nextdate = strtotime( $date ) + 60 * 60 * 24 * $i;
-			$nextdate = date( 'd.m.Y', $nextdate );
-			$dates .= "$nextdate " . WPephemeris::get_thelemic_date( $nextdate, $time ) . "<br />";
-		}
-
-		return $dates;
-	}
-
-	function get_thelemic_date( $date, $time ) {
-
+		$date = $_GET['date'] ? $_GET['date'] : date( 'd.m.Y' );
+		$time = $_GET['timeutc'] ? $_GET['timeutc'] : date( 'H.i' );
 
 		$wpephem = new WPephemeris();
 
@@ -299,7 +239,8 @@ class WPephemeris {
 		$second = $years % 22;
 		$output .= $wpephem->romanic_number( $first ) . ":" . $wpephem->romanic_number( $second );
 		$output .= ' Dies ' . $wpephem->planetary_day( date('N', strtotime( $date ) ) );
-		return $output;
+		echo $output;
+		exit();
 	}
 
 	function romanic_number($num){ 
