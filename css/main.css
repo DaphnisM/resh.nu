@@ -1,217 +1,284 @@
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
-
 /*
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
  * Kroc Camen, and the H5BP dev community and team.
  */
-
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
-
 html,
 button,
 input,
 select,
 textarea {
-    color: #222;
-}
+  color: #222; }
 
 html {
-    font-size: 1em;
-    line-height: 1.4;
-}
+  font-size: 1em;
+  line-height: 1.4; }
 
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
  * Customize the background color to match your design.
  */
-
 ::-moz-selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
+  background: #b3d4fc;
+  text-shadow: none; }
 
 ::selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
+  background: #b3d4fc;
+  text-shadow: none; }
 
 /*
  * A better looking default horizontal rule
  */
-
 hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
 
 /*
  * Remove the gap between images, videos, audio and canvas and the bottom of
  * their containers: h5bp.com/i/440
  */
-
 audio,
 canvas,
 img,
 video {
-    vertical-align: middle;
-}
+  vertical-align: middle; }
 
 /*
  * Remove default fieldset styles.
  */
-
 fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
+  border: 0;
+  margin: 0;
+  padding: 0; }
 
 /*
  * Allow only vertical resizing of textareas.
  */
-
 textarea {
-    resize: vertical;
-}
+  resize: vertical; }
 
 /* ==========================================================================
    Browse Happy prompt
    ========================================================================== */
-
 .browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0; }
 
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
 @font-face {
   font-family: 'AstroDotBasic';
-  src: url('astrodotbasic.eot');
-  src: url('astrodotbasic.eot?#iefix') format('embedded-opentype'),
-       url('astrodotbasic.woff') format('woff'),
-       url('astrodotbasic.ttf') format('truetype'),
-       url('astrodotbasic.svg#AstroDotBasic') format('svg');
-}
+  src: url("astrodotbasic.eot");
+  src: url("astrodotbasic.eot?#iefix") format("embedded-opentype"), url("astrodotbasic.woff") format("woff"), url("astrodotbasic.ttf") format("truetype"), url("astrodotbasic.svg#AstroDotBasic") format("svg"); }
 
 .zodiac-sign {
-  font-family: 'AstroDotBasic',sans-serif;
-}
+  font-family: 'AstroDotBasic',sans-serif; }
 
-#today {
+.date {
+  clear: both;
   width: 500px;
-  margin: 0 auto;
-}
+  margin: 0 auto; }
 
-#today .thelemic-date {
-  text-align: center;
-}
+.thelemic-date {
+  text-align: center; }
 
-#today .resh-times {
-  margin: 1em 0;
-}
+.resh-times {
+  margin: 1em 0; }
 
-#today .planetary-hours .day {
-  float: left;
-}
+.planetary-hours .day {
+  float: left; }
 
-#today .planetary-hours .night {
-  float: right;
-}
+.planetary-hours .night {
+  float: right; }
 
+.resh-times {
+  position: relative; }
 
+.resh-times h3 {
+  position: absolute;
+  top: 0%;
+  right: 60%; }
 
+.resh-times li {
+  width: 50%;
+  float: left; }
 
+/* light is default mode, so pair with general html definition */
+html, .light {
+  background-color: #fdf6e3;
+  color: #657b83; }
+  html *, .light * {
+    color: #657b83; }
+  html h1, html h2, html h3, html h4, html h5, html h6, .light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
+    color: #586e75;
+    border-color: #657b83; }
+  html a, html a:active, html a:visited, .light a, .light a:active, .light a:visited {
+    color: #586e75; }
 
+.dark {
+  background-color: #002b36;
+  color: #839496; }
+  .dark * {
+    color: #839496; }
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: #93a1a1;
+    border-color: #839496; }
+  .dark a, .dark a:active, .dark a:visited {
+    color: #93a1a1; }
 
+html * {
+  color-profile: sRGB;
+  rendering-intent: auto; }
 
+html.yellow, .yellow {
+  color: #b58900; }
+  html.yellow a, html.yellow a:active, html.yellow a:visited, html.yellow code.url, .yellow a, .yellow a:active, .yellow a:visited, .yellow code.url {
+    color: #b58900; }
+  html.yellow h1, html.yellow h2, html.yellow h3, html.yellow h4, html.yellow h5, html.yellow h6, .yellow h1, .yellow h2, .yellow h3, .yellow h4, .yellow h5, .yellow h6 {
+    color: #b58900; }
+  html.yellow h2#download + h3, .yellow h2#download + h3 {
+    background-image: url("/img/download-yellow.png");
+    color: #b58900; }
 
+html.orange, .orange {
+  color: #cb4b16; }
+  html.orange a, html.orange a:active, html.orange a:visited, html.orange code.url, .orange a, .orange a:active, .orange a:visited, .orange code.url {
+    color: #cb4b16; }
+  html.orange h1, html.orange h2, html.orange h3, html.orange h4, html.orange h5, html.orange h6, .orange h1, .orange h2, .orange h3, .orange h4, .orange h5, .orange h6 {
+    color: #cb4b16; }
+  html.orange h2#download + h3, .orange h2#download + h3 {
+    background-image: url("/img/download-orange.png");
+    color: #cb4b16; }
 
+html.red, .red {
+  color: #dc322f; }
+  html.red a, html.red a:active, html.red a:visited, html.red code.url, .red a, .red a:active, .red a:visited, .red code.url {
+    color: #dc322f; }
+  html.red h1, html.red h2, html.red h3, html.red h4, html.red h5, html.red h6, .red h1, .red h2, .red h3, .red h4, .red h5, .red h6 {
+    color: #dc322f; }
+  html.red h2#download + h3, .red h2#download + h3 {
+    background-image: url("/img/download-red.png");
+    color: #dc322f; }
 
+html.magenta, .magenta {
+  color: #d33682; }
+  html.magenta a, html.magenta a:active, html.magenta a:visited, html.magenta code.url, .magenta a, .magenta a:active, .magenta a:visited, .magenta code.url {
+    color: #d33682; }
+  html.magenta h1, html.magenta h2, html.magenta h3, html.magenta h4, html.magenta h5, html.magenta h6, .magenta h1, .magenta h2, .magenta h3, .magenta h4, .magenta h5, .magenta h6 {
+    color: #d33682; }
+  html.magenta h2#download + h3, .magenta h2#download + h3 {
+    background-image: url("/img/download-magenta.png");
+    color: #d33682; }
 
+html.violet, .violet {
+  color: #6c71c4; }
+  html.violet a, html.violet a:active, html.violet a:visited, html.violet code.url, .violet a, .violet a:active, .violet a:visited, .violet code.url {
+    color: #6c71c4; }
+  html.violet h1, html.violet h2, html.violet h3, html.violet h4, html.violet h5, html.violet h6, .violet h1, .violet h2, .violet h3, .violet h4, .violet h5, .violet h6 {
+    color: #6c71c4; }
+  html.violet h2#download + h3, .violet h2#download + h3 {
+    background-image: url("/img/download-violet.png");
+    color: #6c71c4; }
 
+html.blue, .blue {
+  color: #268bd2; }
+  html.blue a, html.blue a:active, html.blue a:visited, html.blue code.url, .blue a, .blue a:active, .blue a:visited, .blue code.url {
+    color: #268bd2; }
+  html.blue h1, html.blue h2, html.blue h3, html.blue h4, html.blue h5, html.blue h6, .blue h1, .blue h2, .blue h3, .blue h4, .blue h5, .blue h6 {
+    color: #268bd2; }
+  html.blue h2#download + h3, .blue h2#download + h3 {
+    background-image: url("/img/download-blue.png");
+    color: #268bd2; }
+
+html.cyan, .cyan {
+  color: #2aa198; }
+  html.cyan a, html.cyan a:active, html.cyan a:visited, html.cyan code.url, .cyan a, .cyan a:active, .cyan a:visited, .cyan code.url {
+    color: #2aa198; }
+  html.cyan h1, html.cyan h2, html.cyan h3, html.cyan h4, html.cyan h5, html.cyan h6, .cyan h1, .cyan h2, .cyan h3, .cyan h4, .cyan h5, .cyan h6 {
+    color: #2aa198; }
+  html.cyan h2#download + h3, .cyan h2#download + h3 {
+    background-image: url("/img/download-cyan.png");
+    color: #2aa198; }
+
+html.green, .green {
+  color: #859900; }
+  html.green a, html.green a:active, html.green a:visited, html.green code.url, .green a, .green a:active, .green a:visited, .green code.url {
+    color: #859900; }
+  html.green h1, html.green h2, html.green h3, html.green h4, html.green h5, html.green h6, .green h1, .green h2, .green h3, .green h4, .green h5, .green h6 {
+    color: #859900; }
+  html.green h2#download + h3, .green h2#download + h3 {
+    background-image: url("/img/download-green.png");
+    color: #859900; }
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
-
 /*
  * Image replacement
  */
-
 .ir {
-    background-color: transparent;
-    border: 0;
-    overflow: hidden;
-    /* IE 6/7 fallback */
-    *text-indent: -9999px;
-}
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  /* IE 6/7 fallback */
+  *text-indent: -9999px; }
 
 .ir:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 150%;
-}
+  content: "";
+  display: block;
+  width: 0;
+  height: 150%; }
 
 /*
  * Hide from both screenreaders and browsers: h5bp.com/u
  */
-
 .hidden {
-    display: none !important;
-    visibility: hidden;
-}
+  display: none !important;
+  visibility: hidden; }
 
 /*
  * Hide only visually, but have it available for screenreaders: h5bp.com/v
  */
-
 .visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
 
 /*
  * Extends the .visuallyhidden class to allow the element to be focusable
  * when navigated to via the keyboard: h5bp.com/p
  */
-
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
-}
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto; }
 
 /*
  * Hide visually and from screenreaders, but maintain layout
  */
-
 .invisible {
-    visibility: hidden;
-}
+  visibility: hidden; }
 
 /*
  * Clearfix: contain floats
@@ -224,111 +291,87 @@ textarea {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
-
 .clearfix:before,
 .clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
-}
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
 
 .clearfix:after {
-    clear: both;
-}
+  clear: both; }
 
 /*
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-
 .clearfix {
-    *zoom: 1;
-}
+  *zoom: 1; }
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
    Modify as content requires.
    ========================================================================== */
-
 @media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
-
-@media print,
-       (-o-min-device-pixel-ratio: 5/4),
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
-}
-
+  /* Style adjustments for viewports that meet the condition */ }
+@media print, (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */ }
 /* ==========================================================================
    Print styles.
    Inlined to avoid required HTTP connection: h5bp.com/r
    ========================================================================== */
-
 @media print {
-    * {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster: h5bp.com/s */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important;
+    text-shadow: none !important; }
 
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
+  a,
+  a:visited {
+    text-decoration: underline; }
 
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
+  a[href]:after {
+    content: " (" attr(href) ")"; }
 
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
+  abbr[title]:after {
+    content: " (" attr(title) ")"; }
 
-    /*
-     * Don't show links for images, or javascript/internal links
-     */
+  /*
+   * Don't show links for images, or javascript/internal links
+   */
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: ""; }
 
-    .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: "";
-    }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid; }
 
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
+  thead {
+    display: table-header-group;
+    /* h5bp.com/t */ }
 
-    thead {
-        display: table-header-group; /* h5bp.com/t */
-    }
+  tr,
+  img {
+    page-break-inside: avoid; }
 
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
+  img {
+    max-width: 100% !important; }
 
-    img {
-        max-width: 100% !important;
-    }
+  @page {
+    margin: 0.5cm; }
 
-    @page {
-        margin: 0.5cm;
-    }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3; }
 
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
-}
+  h2,
+  h3 {
+    page-break-after: avoid; } }

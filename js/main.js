@@ -5,43 +5,43 @@ jQuery(document).ready(function($){
 			'name' : 'Sun',
 			'symbol' : '☉',
 			'html' : '&#x2609;',
-			'letter' : '<span class="zodiac-sign">A</span>'
+			'letter' : '<span class="zodiac-sign yellow">A</span>'
 		},
 		{
 			'name' : 'Moon',
 			'symbol' : '☽',
 			'html' : '&#x263D;',
-			'letter' : '<span class="zodiac-sign">B</span>'
+			'letter' : '<span class="zodiac-sign violet">B</span>'
 		},
 		{
 			'name' : 'Mars',
 			'symbol' : '♂',
 			'html' : '&#x2642;',
-			'letter' : '<span class="zodiac-sign">E</span>'
+			'letter' : '<span class="zodiac-sign red">E</span>'
 		},
 		{
 			'name': 'Mercury',
 			'symbol' : '☿',
 			'html' : '&#x263F;',
-			'letter' : '<span class="zodiac-sign">C</span>'
+			'letter' : '<span class="zodiac-sign orange">C</span>'
 		},
 		{
 			'name' : 'Jupiter',
 			'symbol' : '♃',
 			'html' : '&#x2643;',
-			'letter' : '<span class="zodiac-sign">F</span>'
+			'letter' : '<span class="zodiac-sign green">F</span>'
 		},
 		{
 			'name' : 'Venus',
 			'symbol' : '♀',
 			'html' : '&#x2640;',
-			'letter' : '<span class="zodiac-sign">D</span>'
+			'letter' : '<span class="zodiac-sign cyan">D</span>'
 		},
 		{
 			'name' : 'Saturn',
 			'symbol' : '♄',
 			'html' : '&#x2644;',
-			'letter' : '<span class="zodiac-sign">G</span>'
+			'letter' : '<span class="zodiac-sign dark blue">G</span>'
 		}
 	];
 
@@ -58,6 +58,7 @@ jQuery(document).ready(function($){
 	function get_thelemic_date( date, time ) {
 		if ( date == undefined || date == null ) {
 			date = new Date();
+			dow = date.getDay();
 			date = date.format('UTC:dd.mm.yyyy');
 		}
 		if ( time == undefined || time == null ) {
@@ -65,6 +66,7 @@ jQuery(document).ready(function($){
 			time = time.format('UTC:H.MM');
 		}
 		if ( date instanceof Date ) {
+			dow = date.getDay();
 			time = date.format('UTC:H.MM');
 			date = date.format('UTC:dd.mm.yyyy');
 		}
@@ -74,14 +76,15 @@ jQuery(document).ready(function($){
 			async : false,
 			success : function( data ) { return data; }
 		});
-		return tdate.responseText;
+		thelemic_date = tdate.responseText + " dies " + planets[dow]['letter'];
+		return thelemic_date;
 	}
 
 	function get_planetary_hours( date, times ) {
 
 		var daylength =  times.sunset.getTime() - times.sunrise.getTime();
 		var dayhourlength = daylength / 12;
-		var tomorrow = new Date();
+		var tomorrow = new Date( date );
 		tomorrow = tomorrow.setDate( tomorrow.getDate() + 1 );
 		tomorrow = SunCalc.getTimes( tomorrow, '45.5379','-122.714' );
 		var nighthourlength = ( tomorrow.sunrise.getTime() - times.sunset.getTime() ) / 12;
@@ -137,6 +140,8 @@ jQuery(document).ready(function($){
 	var source   = $("#entry-template").html();
 	var template = Handlebars.compile(source);
 	var today = get_date( new Date() );
+	var tomorrow = get_date( new Date(new Date().getTime() + 24 * 60 * 60 * 1000) );
 	var html = template( today );
 	jQuery('body').append( html );
+	jQuery('body').append( template( tomorrow ) );
 });
