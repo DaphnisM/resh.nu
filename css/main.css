@@ -97,9 +97,39 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+@font-face {
+  font-family: 'AstroDotBasic';
+  src: url('astrodotbasic.eot');
+  src: url('astrodotbasic.eot?#iefix') format('embedded-opentype'),
+       url('astrodotbasic.woff') format('woff'),
+       url('astrodotbasic.ttf') format('truetype'),
+       url('astrodotbasic.svg#AstroDotBasic') format('svg');
+}
 
+.zodiac-sign {
+  font-family: 'AstroDotBasic',sans-serif;
+}
 
+#today {
+  width: 500px;
+  margin: 0 auto;
+}
 
+#today .thelemic-date {
+  text-align: center;
+}
+
+#today .resh-times {
+  margin: 1em 0;
+}
+
+#today .planetary-hours .day {
+  float: left;
+}
+
+#today .planetary-hours .night {
+  float: right;
+}
 
 
 

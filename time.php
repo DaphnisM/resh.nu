@@ -1,8 +1,10 @@
 <?php
 
+error_reporting( 'E_NONE' );
+
 class WPephemeris {
 
-	public $debug = true;
+	public $debug = false;
 
 	# planets, in the order swiss provides them, with english name and symbol
 	public $planets = array(
@@ -131,7 +133,7 @@ class WPephemeris {
 	# 
 	##
 	public function __construct() {
-		switch $_REQUEST['action'] {
+		switch ( $_REQUEST['action'] ) {
 			case 'thelemic_date' :
 				$this->thelemic_date();
 				break;
@@ -197,7 +199,7 @@ class WPephemeris {
 		reset( $wpephem->planets );
 		
 		# json request?
-		if ( 'json' == $_REQUEST['format'] ) ) :
+		if ( 'json' == $_REQUEST['format'] ) :
 			echo json_encode( $json );
 			exit();
 		endif;
@@ -205,27 +207,23 @@ class WPephemeris {
 		exit();
 	}
 
-	function wingding( $letter ) {
-		return '<span class="zodiac-sign">' . $letter . '</span>';
-	}
-
-	function thelemic_date() {
+	public function thelemic_date() {
 
 		$date = $_GET['date'] ? $_GET['date'] : date( 'd.m.Y' );
-		$time = $_GET['timeutc'] ? $_GET['timeutc'] : date( 'H.i' );
+		$time = $_GET['time'] ? $_GET['time'] : date( 'H.i' );
 
-		$wpephem = new WPephemeris();
+		$output = "";
 
 		# Sol #deg Sign, Luna #deg Sign Anno IV:xxi dies --
-		$chart = $wpephem->get_chart( $date, $time );
+		$chart = $this->get_chart( $date, $time );
 
-		foreach( $wpephem->planets as $index => $planet ) :
+		foreach( $this->planets as $index => $planet ) :
 			if ( 2 == $index )
 				break;
 			$deg = substr( $chart[$index], 0, 2 ); # degrees is first two chars
 			$sign = substr( $chart[$index], 3, 2 ); # sign is next two chars
-			$output .= $wpephem->wingding( $planet['letter'] ) . " " . $deg . "° ";
-			$output .= $wpephem->wingding($wpephem->zodiac[$sign]['letter']) .' ';
+			$output .= $this->wingding( $planet['letter'] ) . " " . $deg . "° ";
+			$output .= $this->wingding($this->zodiac[$sign]['letter']) .' ';
 		endforeach;
 
 		$output .= "Anno ";
@@ -237,48 +235,42 @@ class WPephemeris {
 		$years = floor( $diff / ( 365*60*60*24 ) );
 		$first = $years / 22;
 		$second = $years % 22;
-		$output .= $wpephem->romanic_number( $first ) . ":" . $wpephem->romanic_number( $second );
-		$output .= ' Dies ' . $wpephem->planetary_day( date('N', strtotime( $date ) ) );
+		$output .= $this->roman_number( $first ) . ":" . strtolower( $this->roman_number( $second ) );
+		$output .= ' dies ' . $this->planetary_day( date('N', strtotime( $date ) ) );
 		echo $output;
 		exit();
 	}
 
-	function romanic_number($num){ 
-		$n = intval($num); 
-		$res = ''; 
+	private function roman_number( $num ) { 
+		$n = intval( $num ); 
+		$res = '';
 
-		/*** roman_numerals array  ***/ 
 		$roman_numerals = array( 
-		    'M'  => 1000, 
-		    'CM' => 900, 
-		    'D'  => 500, 
-		    'CD' => 400, 
-		    'C'  => 100, 
-		    'XC' => 90, 
-		    'L'  => 50, 
-		    'XL' => 40, 
-		    'X'  => 10, 
-		    'IX' => 9, 
-		    'V'  => 5, 
-		    'IV' => 4, 
-		    'I'  => 1); 
+			'M'  => 1000, 
+			'CM' => 900, 
+			'D'  => 500, 
+			'CD' => 400, 
+			'C'  => 100, 
+			'XC' => 90, 
+			'L'  => 50, 
+			'XL' => 40, 
+			'X'  => 10, 
+			'IX' => 9, 
+			'V'  => 5, 
+			'IV' => 4, 
+			'I'  => 1
+		); 
 
-		foreach ($roman_numerals as $roman => $number){ 
-		    /*** divide to get  matches ***/ 
-		    $matches = intval($n / $number); 
-
-		    /*** assign the roman char * $matches ***/ 
-		    $res .= str_repeat($roman, $matches); 
-
-		    /*** substract from the number ***/ 
-		    $n = $n % $number; 
+		foreach ( $roman_numerals as $roman => $number ) { 
+			$matches = intval( $n / $number ); 
+			$res .= str_repeat( $roman, $matches ); 
+			$n = $n % $number; 
 		} 
 
-		/*** return the res ***/ 
 		return $res; 
 	}
 
-	function planetary_day( $num ) {
+	private function planetary_day( $num ) {
 		switch ( $num ) {
 			case '1' :
 				return $this->planets[1]['html'];
@@ -302,6 +294,10 @@ class WPephemeris {
 				return $this->planets[0]['html'];
 			break;
 		}
+	}
+
+	private function wingding( $letter ) {
+		return '<span class="zodiac-sign">' . $letter . '</span>';
 	}
 }
 

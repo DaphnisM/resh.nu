@@ -20,14 +20,36 @@
 		<!--[if lt IE 7]>
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
-
+<script id="entry-template" type="text/x-handlebars-template">
 	<div id="today">
-		<div class="thelemic-date"></div>
-		<div class="resh-times"></div>
-		<div class="planetary-hours"><span class="current"></span></div>
+		<div class="thelemic-date">
+			<h3>Thelemic Date</h3>
+			{{{tdate}}}
+		</div>
+		<div class="resh-times">
+			<h3>Resh Times</h3>
+			<ul>
+				<li>{{{resh.rise}}}</li>
+				<li>{{{resh.noon}}}</li>
+				<li>{{{resh.set}}}</li>
+				<li>{{{resh.nadir}}}</li>
+			</ul>
+		</div>
+		<div class="planetary-hours">
+			<ol class="day">
+				{{#each day}}
+					<li>{{{this}}}</li>
+				{{/each}}
+			</ol>
+			<ol class="night">
+				{{#each night}}
+					<li>{{{this}}}</li>
+				{{/each}}
+			</ol>
+		</div>
 		<div class="other-planets"></div>
 	</div>
-
+</script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 		<script src="js/plugins.js"></script>
