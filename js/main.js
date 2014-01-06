@@ -137,7 +137,7 @@ jQuery(document).ready(function($){
 	var source   = $("#entry-template").html();
 	var template = Handlebars.compile(source);
 	var today = get_date( new Date() );
-	var tomorrow = get_date( new Date() + 1 );
+	var tomorrow = get_date( new Date(new Date().getTime() + 24 * 60 * 60 * 1000) );
 	var html = template( today );
 	jQuery('body').append( html );
 	jQuery('body').append( template( tomorrow ) );
