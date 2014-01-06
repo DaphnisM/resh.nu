@@ -12,7 +12,7 @@ class WPephemeris {
 			'name' => 'Sun',
 			'symbol' => '☉',
 			'html' => '&#x2609;',
-			'letter' => '<span class="zodiac-sign red">A</span>'
+			'letter' => '<span class="zodiac-sign yellow">A</span>'
 		),
 		1 => array(
 			'name' => 'Moon',
