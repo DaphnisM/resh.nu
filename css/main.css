@@ -132,6 +132,16 @@ textarea {
   float: right;
 }
 
+.resh-times {
+  position: relative;
+}
+
+.resh-times h3 {
+  position: absolute;
+  top: 0%;
+  right: 60%;
+}
+
 .resh-times li {
   width: 50%;
   float: left;
