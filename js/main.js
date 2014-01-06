@@ -58,7 +58,7 @@ jQuery(document).ready(function($){
 	function get_thelemic_date( date, time ) {
 		if ( date == undefined || date == null ) {
 			date = new Date();
-			dow = date.getDate();
+			dow = date.getDay();
 			date = date.format('UTC:dd.mm.yyyy');
 		}
 		if ( time == undefined || time == null ) {
@@ -66,7 +66,7 @@ jQuery(document).ready(function($){
 			time = time.format('UTC:H.MM');
 		}
 		if ( date instanceof Date ) {
-			dow = date.getDate();
+			dow = date.getDay();
 			time = date.format('UTC:H.MM');
 			date = date.format('UTC:dd.mm.yyyy');
 		}
