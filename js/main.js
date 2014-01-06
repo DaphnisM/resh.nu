@@ -84,7 +84,7 @@ jQuery(document).ready(function($){
 
 		var daylength =  times.sunset.getTime() - times.sunrise.getTime();
 		var dayhourlength = daylength / 12;
-		var tomorrow = new Date();
+		var tomorrow = date;
 		tomorrow = tomorrow.setDate( tomorrow.getDate() + 1 );
 		tomorrow = SunCalc.getTimes( tomorrow, '45.5379','-122.714' );
 		var nighthourlength = ( tomorrow.sunrise.getTime() - times.sunset.getTime() ) / 12;
