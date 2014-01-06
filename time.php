@@ -58,73 +58,73 @@ class WPephemeris {
 			'name' => 'Aries',
 			'symbol' => '♈',
 			'html' => '&# x2648;',
-			'letter' => 'a'
+			'letter' => '<span class="zodiac-sign red">a</span>'
 		),
 		'ta' => array(
 			'name' => 'Taurus',
 			'symbol' => '♉',
 			'html' => '&#x2649;',
-			'letter' => 'b'
+			'letter' => '<span class="zodiac-sign green">b</span>'
 		),
 		'ge' => array(
 			'name' => 'Gemini',
 			'symbol' => '♊',
 			'html' => '&#x264a;',
-			'letter' => 'c'
+			'letter' => '<span class="zodiac-sign orange">c</span>'
 		),
 		'cn' => array(
 			'name' => 'Cancer',
 			'symbol' => '♋',
 			'html' => '&#x264b;',
-			'letter' => 'd'
+			'letter' => '<span class="zodiac-sign blue">d</span>'
 		),
 		'le' => array(
 			'name' => 'Leo',
 			'symbol' => '♌',
 			'html' => '&#x264c;',
-			'letter' => 'e'
+			'letter' => '<span class="zodiac-sign red">e</span>'
 		),
 		'vi' => array(
 			'name' => 'Virgo',
 			'symbol' => '♍',
 			'html' => '&#x264d;',
-			'letter' => 'f'
+			'letter' => '<span class="zodiac-sign green">f</span>'
 		),
 		'li' => array(
 			'name' => 'Libra',
 			'symbol' => '♎',
 			'html' => '&#x264e;',
-			'letter' => 'g'
+			'letter' => '<span class="zodiac-sign blue">g</span>'
 		),
 		'sc' => array(
 			'name' => 'Scorpio',
 			'symbol' => '♏',
 			'html' => '&#x264f;',
-			'letter' => 'h'
+			'letter' => '<span class="zodiac-sign orange">h</span>'
 		),
 		'sa' => array(
 			'name' => 'Sagittarius',
 			'symbol' => '♐',
 			'html' => '&#x2650;',
-			'letter' => 'i'
+			'letter' => '<span class="zodiac-sign red">i</span>'
 		),
 		'cp' => array(
 			'name' => 'Capricorn',
 			'symbol' => '♑',
 			'html' => '&#x2651;',
-			'letter' => 'j'
+			'letter' => '<span class="zodiac-sign green">j</span>'
 		),
 		'aq' => array(
 			'name' => 'Aquarius',
 			'symbol' => '♒',
 			'html' => '&#x2652;',
-			'letter' => 'k'
+			'letter' => '<span class="zodiac-sign orange">k</span>'
 		),
 		'pi' => array(
 			'name' => 'Pisces',
 			'symbol' => '♓',
 			'html' => '&#x2653;',
-			'letter' => 'l'
+			'letter' => '<span class="zodiac-sign blue">l</span>'
 		),
 	);
 
@@ -189,7 +189,7 @@ class WPephemeris {
 				$url = plugin_dir_url( __FILE__  ) . 'svgs/' . $wpephem->zodiac[$sign]['name'] . '.svg';
 				$output .= "<img width='15'src='$url' />";
 			else :
-				$output .= $wpephem->wingding($wpephem->zodiac[$sign]['letter']) .'';
+				$output .= $wpephem->zodiac[$sign]['letter'] .'';
 			endif;
 
 		endforeach;
@@ -222,8 +222,8 @@ class WPephemeris {
 				break;
 			$deg = substr( $chart[$index], 0, 2 ); # degrees is first two chars
 			$sign = substr( $chart[$index], 3, 2 ); # sign is next two chars
-			$output .= $this->wingding( $planet['letter'] ) . " " . $deg . "° ";
-			$output .= $this->wingding($this->zodiac[$sign]['letter']) .' ';
+			$output .= $planet['letter'] . " " . $deg . "° ";
+			$output .= $this->zodiac[$sign]['letter'] .' ';
 		endforeach;
 
 		$output .= "Anno ";
@@ -267,10 +267,6 @@ class WPephemeris {
 		} 
 
 		return $res; 
-	}
-
-	private function wingding( $letter ) {
-		return '<span class="zodiac-sign">' . $letter . '</span>';
 	}
 }
 
