@@ -136,7 +136,9 @@ textarea {
   float: left;
 }
 
-
+.date {
+  clear: both;
+}
 
 
 
