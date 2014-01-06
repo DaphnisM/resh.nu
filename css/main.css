@@ -142,6 +142,70 @@ html * {
   color-profile: sRGB;
   rendering-intent: auto; }
 
+html.yellow a, html.yellow a:active, html.yellow a:visited, html.yellow code.url, .yellow a, .yellow a:active, .yellow a:visited, .yellow code.url {
+  color: #b58900; }
+html.yellow h1, html.yellow h2, html.yellow h3, html.yellow h4, html.yellow h5, html.yellow h6, .yellow h1, .yellow h2, .yellow h3, .yellow h4, .yellow h5, .yellow h6 {
+  color: #b58900; }
+html.yellow h2#download + h3, .yellow h2#download + h3 {
+  background-image: url("/img/download-yellow.png");
+  color: #b58900; }
+
+html.orange a, html.orange a:active, html.orange a:visited, html.orange code.url, .orange a, .orange a:active, .orange a:visited, .orange code.url {
+  color: #cb4b16; }
+html.orange h1, html.orange h2, html.orange h3, html.orange h4, html.orange h5, html.orange h6, .orange h1, .orange h2, .orange h3, .orange h4, .orange h5, .orange h6 {
+  color: #cb4b16; }
+html.orange h2#download + h3, .orange h2#download + h3 {
+  background-image: url("/img/download-orange.png");
+  color: #cb4b16; }
+
+html.red a, html.red a:active, html.red a:visited, html.red code.url, .red a, .red a:active, .red a:visited, .red code.url {
+  color: #dc322f; }
+html.red h1, html.red h2, html.red h3, html.red h4, html.red h5, html.red h6, .red h1, .red h2, .red h3, .red h4, .red h5, .red h6 {
+  color: #dc322f; }
+html.red h2#download + h3, .red h2#download + h3 {
+  background-image: url("/img/download-red.png");
+  color: #dc322f; }
+
+html.magenta a, html.magenta a:active, html.magenta a:visited, html.magenta code.url, .magenta a, .magenta a:active, .magenta a:visited, .magenta code.url {
+  color: #d33682; }
+html.magenta h1, html.magenta h2, html.magenta h3, html.magenta h4, html.magenta h5, html.magenta h6, .magenta h1, .magenta h2, .magenta h3, .magenta h4, .magenta h5, .magenta h6 {
+  color: #d33682; }
+html.magenta h2#download + h3, .magenta h2#download + h3 {
+  background-image: url("/img/download-magenta.png");
+  color: #d33682; }
+
+html.violet a, html.violet a:active, html.violet a:visited, html.violet code.url, .violet a, .violet a:active, .violet a:visited, .violet code.url {
+  color: #6c71c4; }
+html.violet h1, html.violet h2, html.violet h3, html.violet h4, html.violet h5, html.violet h6, .violet h1, .violet h2, .violet h3, .violet h4, .violet h5, .violet h6 {
+  color: #6c71c4; }
+html.violet h2#download + h3, .violet h2#download + h3 {
+  background-image: url("/img/download-violet.png");
+  color: #6c71c4; }
+
+html.blue a, html.blue a:active, html.blue a:visited, html.blue code.url, .blue a, .blue a:active, .blue a:visited, .blue code.url {
+  color: #268bd2; }
+html.blue h1, html.blue h2, html.blue h3, html.blue h4, html.blue h5, html.blue h6, .blue h1, .blue h2, .blue h3, .blue h4, .blue h5, .blue h6 {
+  color: #268bd2; }
+html.blue h2#download + h3, .blue h2#download + h3 {
+  background-image: url("/img/download-blue.png");
+  color: #268bd2; }
+
+html.cyan a, html.cyan a:active, html.cyan a:visited, html.cyan code.url, .cyan a, .cyan a:active, .cyan a:visited, .cyan code.url {
+  color: #2aa198; }
+html.cyan h1, html.cyan h2, html.cyan h3, html.cyan h4, html.cyan h5, html.cyan h6, .cyan h1, .cyan h2, .cyan h3, .cyan h4, .cyan h5, .cyan h6 {
+  color: #2aa198; }
+html.cyan h2#download + h3, .cyan h2#download + h3 {
+  background-image: url("/img/download-cyan.png");
+  color: #2aa198; }
+
+html.green a, html.green a:active, html.green a:visited, html.green code.url, .green a, .green a:active, .green a:visited, .green code.url {
+  color: #859900; }
+html.green h1, html.green h2, html.green h3, html.green h4, html.green h5, html.green h6, .green h1, .green h2, .green h3, .green h4, .green h5, .green h6 {
+  color: #859900; }
+html.green h2#download + h3, .green h2#download + h3 {
+  background-image: url("/img/download-green.png");
+  color: #859900; }
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */

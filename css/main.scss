@@ -182,7 +182,63 @@ html * {
     color-profile: sRGB;
     rendering-intent: auto;
 }
-
+//TODO> put tone accents in rebase .base03{ @include accentize($base03) }
+html.yellow, .yellow{
+    @include accentize($yellow);
+    h2#download + h3 {
+        background-image: url("/img/download-yellow.png");
+        color:$yellow;
+    }
+}
+html.orange, .orange{
+    @include accentize($orange);
+    h2#download + h3 {
+        background-image: url("/img/download-orange.png");
+        color:$orange;
+    }
+}
+html.red, .red{
+    @include accentize($red);
+    h2#download + h3 {
+        background-image: url("/img/download-red.png");
+        color:$red;
+    }
+}
+html.magenta, .magenta{
+    @include accentize($magenta);
+    h2#download + h3 {
+        background-image: url("/img/download-magenta.png");
+        color:$magenta;
+    }
+}
+html.violet, .violet{
+    @include accentize($violet);
+    h2#download + h3 {
+        background-image: url("/img/download-violet.png");
+        color:$violet;
+    }
+}
+html.blue, .blue{
+    @include accentize($blue);
+    h2#download + h3 {
+        background-image: url("/img/download-blue.png");
+        color:$blue;
+    }
+}
+html.cyan, .cyan{
+    @include accentize($cyan);
+    h2#download + h3 {
+        background-image: url("/img/download-cyan.png");
+        color:$cyan;
+    }
+}
+html.green, .green{
+    @include accentize($green);
+    h2#download + h3 {
+        background-image: url("/img/download-green.png");
+        color:$green;
+    }
+}
 
 /* ==========================================================================
    Helper classes
