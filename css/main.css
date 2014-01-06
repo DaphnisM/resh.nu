@@ -110,24 +110,25 @@ textarea {
   font-family: 'AstroDotBasic',sans-serif;
 }
 
-#today {
+.date {
+  clear: both;
   width: 500px;
   margin: 0 auto;
 }
 
-#today .thelemic-date {
+.thelemic-date {
   text-align: center;
 }
 
-#today .resh-times {
+.resh-times {
   margin: 1em 0;
 }
 
-#today .planetary-hours .day {
+.planetary-hours .day {
   float: left;
 }
 
-#today .planetary-hours .night {
+.planetary-hours .night {
   float: right;
 }
 
@@ -135,18 +136,6 @@ textarea {
   width: 50%;
   float: left;
 }
-
-.date {
-  clear: both;
-}
-
-
-
-
-
-
-
-
 
 
 /* ==========================================================================
