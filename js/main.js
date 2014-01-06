@@ -5,43 +5,43 @@ jQuery(document).ready(function($){
 			'name' : 'Sun',
 			'symbol' : '☉',
 			'html' : '&#x2609;',
-			'letter' : '<span class="zodiac-sign">A</span>'
+			'letter' : '<span class="zodiac-sign yellow">A</span>'
 		},
 		{
 			'name' : 'Moon',
 			'symbol' : '☽',
 			'html' : '&#x263D;',
-			'letter' : '<span class="zodiac-sign">B</span>'
+			'letter' : '<span class="zodiac-sign violet">B</span>'
 		},
 		{
 			'name' : 'Mars',
 			'symbol' : '♂',
 			'html' : '&#x2642;',
-			'letter' : '<span class="zodiac-sign">E</span>'
+			'letter' : '<span class="zodiac-sign red">E</span>'
 		},
 		{
 			'name': 'Mercury',
 			'symbol' : '☿',
 			'html' : '&#x263F;',
-			'letter' : '<span class="zodiac-sign">C</span>'
+			'letter' : '<span class="zodiac-sign orange">C</span>'
 		},
 		{
 			'name' : 'Jupiter',
 			'symbol' : '♃',
 			'html' : '&#x2643;',
-			'letter' : '<span class="zodiac-sign">F</span>'
+			'letter' : '<span class="zodiac-sign blue">F</span>'
 		},
 		{
 			'name' : 'Venus',
 			'symbol' : '♀',
 			'html' : '&#x2640;',
-			'letter' : '<span class="zodiac-sign">D</span>'
+			'letter' : '<span class="zodiac-sign green">D</span>'
 		},
 		{
 			'name' : 'Saturn',
 			'symbol' : '♄',
 			'html' : '&#x2644;',
-			'letter' : '<span class="zodiac-sign">G</span>'
+			'letter' : '<span class="zodiac-sign cyan">G</span>'
 		}
 	];
 
