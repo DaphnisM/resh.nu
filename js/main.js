@@ -58,6 +58,7 @@ jQuery(document).ready(function($){
 	function get_thelemic_date( date, time ) {
 		if ( date == undefined || date == null ) {
 			date = new Date();
+			dow = date.getDate();
 			date = date.format('UTC:dd.mm.yyyy');
 		}
 		if ( time == undefined || time == null ) {
@@ -65,6 +66,7 @@ jQuery(document).ready(function($){
 			time = time.format('UTC:H.MM');
 		}
 		if ( date instanceof Date ) {
+			dow = date.getDate();
 			time = date.format('UTC:H.MM');
 			date = date.format('UTC:dd.mm.yyyy');
 		}
@@ -74,7 +76,7 @@ jQuery(document).ready(function($){
 			async : false,
 			success : function( data ) { return data; }
 		});
-		thelemic_date = tdate.responseText + " dies " + planets[ date.getDate() ]['letter'];
+		thelemic_date = tdate.responseText + " dies " + planets[dow]['letter'];
 		return thelemic_date;
 	}
 
