@@ -74,7 +74,8 @@ jQuery(document).ready(function($){
 			async : false,
 			success : function( data ) { return data; }
 		});
-		return tdate.responseText;
+		thelemic_date = tdate.responseText + " dies " + planets[ date.getDate() ]['letter'];
+		return thelemic_date;
 	}
 
 	function get_planetary_hours( date, times ) {

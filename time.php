@@ -236,7 +236,6 @@ class WPephemeris {
 		$first = $years / 22;
 		$second = $years % 22;
 		$output .= $this->roman_number( $first ) . ":" . strtolower( $this->roman_number( $second ) );
-		$output .= ' dies ' . $this->planetary_day( date('N', strtotime( $date ) ) );
 		echo $output;
 		exit();
 	}
@@ -268,32 +267,6 @@ class WPephemeris {
 		} 
 
 		return $res; 
-	}
-
-	private function planetary_day( $num ) {
-		switch ( $num ) {
-			case '1' :
-				return $this->planets[1]['html'];
-			break;
-			case '2' :
-				return $this->planets[4]['html'];
-			break;
-			case '3' :
-				return $this->planets[2]['html'];
-			break;
-			case '4' :
-				return $this->planets[5]['html'];
-			break;
-			case '5' :
-				return $this->planets[3]['html'];
-			break;
-			case '6' :
-				return $this->planets[6]['html'];
-			break;
-			case '7' :
-				return $this->planets[0]['html'];
-			break;
-		}
 	}
 
 	private function wingding( $letter ) {
