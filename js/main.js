@@ -29,19 +29,19 @@ jQuery(document).ready(function($){
 			'name' : 'Jupiter',
 			'symbol' : '♃',
 			'html' : '&#x2643;',
-			'letter' : '<span class="zodiac-sign blue">F</span>'
+			'letter' : '<span class="zodiac-sign green">F</span>'
 		},
 		{
 			'name' : 'Venus',
 			'symbol' : '♀',
 			'html' : '&#x2640;',
-			'letter' : '<span class="zodiac-sign green">D</span>'
+			'letter' : '<span class="zodiac-sign cyan">D</span>'
 		},
 		{
 			'name' : 'Saturn',
 			'symbol' : '♄',
 			'html' : '&#x2644;',
-			'letter' : '<span class="zodiac-sign cyan">G</span>'
+			'letter' : '<span class="zodiac-sign dark blue">G</span>'
 		}
 	];
 

@@ -24,31 +24,31 @@ class WPephemeris {
 			'name'=> 'Mercury',
 			'symbol' => '☿',
 			'html' => '&#x263F;',
-			'letter' => 'C'
+			'letter' => '<span class="zodiac-sign orange">C</span>'
 		),
 		3 => array(
 			'name' => 'Venus',
 			'symbol' => '♀',
 			'html' => '&#x2640;',
-			'letter' => 'D'
+			'letter' => '<span class="zodiac-sign cyan">D</span>'
 		),
 		4 => array(
 			'name' => 'Mars',
 			'symbol' => '♂',
 			'html' => '&#x2642;',
-			'letter' => 'E'
+			'letter' => '<span class="zodiac-sign red">E</span>'
 		),
 		5 => array(
 			'name' => 'Jupiter',
 			'symbol' => '♃',
 			'html' => '&#x2643;',
-			'letter' => 'F'
+			'letter' => '<span class="zodiac-sign cyan">F</span>'
 		),
 		6 => array(
 			'name' => 'Saturn',
 			'symbol' => '♄',
 			'html' => '&#x2644;',
-			'letter' => 'G'
+			'letter' => '<span class="zodiac-sign dark blue">G</span>'
 		),
 	);
 
@@ -184,7 +184,7 @@ class WPephemeris {
 				$deg,
 				$wpephem->zodiac[$sign]
 			);
-			$output .= $wpephem->wingding( $planet['letter'] ) . " " . $deg . "° ";
+			$output .= $planet['letter'] . " " . $deg . "° ";
 			if ( $svg ) :
 				$url = plugin_dir_url( __FILE__  ) . 'svgs/' . $wpephem->zodiac[$sign]['name'] . '.svg';
 				$output .= "<img width='15'src='$url' />";

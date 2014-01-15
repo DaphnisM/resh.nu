@@ -46,7 +46,11 @@
 				{{/each}}
 			</ol>
 		</div>
-		<div class="other-planets"></div>
+		<div class="other-planets">
+			{{#each transit}}
+				{{{this}}} &dot; 
+			{{/each}}
+		</div>
 	</div>
 </script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
