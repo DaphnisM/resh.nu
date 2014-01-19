@@ -97,8 +97,9 @@ jQuery(document).ready(function($){
 			async : false,
 			success : function( data ) { return data; }
 		});
-		planets = JSON.parse(curr_planets.responseText);
-		return planets;
+		curr_planets = JSON.parse(curr_planets.responseText);
+		console.log(curr_planets);
+		return curr_planets;
 	}
 
 	function get_planetary_hours( date, times ) {
@@ -164,6 +165,7 @@ jQuery(document).ready(function($){
 		date.resh.nadir.td = get_thelemic_date( times.nadir );
 		date.day = hours.day;
 		date.night = hours.night;
+		date.curr_planets = get_planets( day );
 		return date;
 	}
 
