@@ -57,22 +57,26 @@ jQuery(document).ready(function($){
 
 	function get_thelemic_date( date, time ) {
 		console.log( date, time );
-		if ( date == undefined || date == null ) {
+		if ( date == undefined || date == null ) { // if we have no date
 			date = new Date();
 			dow = date.getDay();
 			date = date.format('UTC:dd.mm.yyyy');
 		}
-		if ( time == undefined || time == null ) {
+		if ( time == undefined || time == null ) { // if we have no time
 			time = new Date();
 			time = time.format('UTC:H.MM');
 		}
-		if ( date instanceof Date ) {
+		if ( typeof time == "string" ) { // if time is actually a string, format it
+			time = new Date( time );
+			time = time.format('UTC:H.MM');
+		}
+		if ( date instanceof Date ) { // if date is a Date
 			dow = date.getDay();
 			time = date.format('UTC:H.MM');
 			date = date.format('UTC:dd.mm.yyyy');
 		}
 		tdate = $.ajax({
-			url : 'time.php?action=thelemic_date',
+			url : 'http://hermpheus.com/time.php?action=thelemic_date',
 			data : '&date=' + date + "&time=" + time,
 			async : false,
 			success : function( data ) { return data; }
