@@ -170,32 +170,32 @@ class WPephemeris {
 		$date = $_GET['date'] ? $_GET['date'] : date( 'd.m.Y' );
 		$timeutc = $_GET['time'] ? $_GET['time'] : date( 'H.i' );
 
-		$chart = $wpephem->get_chart( $date, $time );
+		$chart = $this->get_chart( $date, $time );
 
 		$output .= "<span class='wp-ephemeris'>"; # for html request
 		$json = array(); # for json request
 
-		foreach( $wpephem->planets as $index => $planet ) :
+		foreach( $this->planets as $index => $planet ) :
 			$deg = substr( $chart[$index], 0, 2 ); # degrees is first two chars
 			$sign = substr( $chart[$index], 3, 2 ); # sign is next two chars
 			$json[] = array(
 				$planet,
 				$deg,
-				$wpephem->zodiac[$sign]
+				$this->zodiac[$sign]
 			);
 			$output .= $planet['letter'] . " " . $deg . "° ";
 			if ( $svg ) :
-				$url = plugin_dir_url( __FILE__  ) . 'svgs/' . $wpephem->zodiac[$sign]['name'] . '.svg';
+				$url = plugin_dir_url( __FILE__  ) . 'svgs/' . $this->zodiac[$sign]['name'] . '.svg';
 				$output .= "<img width='15'src='$url' />";
 			else :
-				$output .= $wpephem->zodiac[$sign]['letter'] .'';
+				$output .= $this->zodiac[$sign]['letter'] .'';
 			endif;
 
 		endforeach;
 
 		$output .= "</span>";
 
-		reset( $wpephem->planets );
+		reset( $this->planets );
 		
 		# json request?
 		if ( 'json' == $_REQUEST['format'] ) :
