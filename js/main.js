@@ -93,7 +93,7 @@ jQuery(document).ready(function($){
 		time = format.time;
 		curr_planets = $.ajax({
 			url : 'http://hermpheus.com/time.php?action=zodiac_chart&format=json',
-			data : '&date=' + date + "&time=" + time,
+			data : 'date=' + date + "&time=" + time,
 			async : false,
 			success : function( data ) { return data; }
 		});
