@@ -21,11 +21,12 @@
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
 <script id="entry-template" type="text/x-handlebars-template">
-	<div class="date">
-		<div class="thelemic-date">
-			{{{tdate}}}
-		</div>
-		<div class="resh-times">
+	<div class="date container">
+		<div class="row">
+			<div class="thelemic-date col-xs-6 col-md-4">
+				{{{tdate}}}
+			</div>
+		<div class="resh-times col-xs-6 col-md-4">
 			<h3>ר</h3>
 			<ul>
 				<li>{{{resh.rise}}} {{{get_thelemic_date resh.rise}}}</li>
@@ -34,19 +35,26 @@
 				<li>{{{resh.nadir}}} {{{get_thelemic_date resh.nadir}}}</li>
 			</ul>
 		</div>
-		<div class="planetary-hours">
-			<ol class="day">
-				{{#each day}}
-					<li>{{{this}}}</li>
-				{{/each}}
-			</ol>
-			<ol class="night">
-				{{#each night}}
-					<li>{{{this}}}</li>
-				{{/each}}
-			</ol>
+		<div class="planetary-hours col-xs-6 col-md-4">
+			<div class="row">
+				<div class="col-xs-6">
+					<ol class="day">
+						{{#each day}}
+							<li>{{{this}}}</li>
+						{{/each}}
+					</ol>
+				</div>
+				<div class="col-xs-6">
+					<ol class="night">
+						{{#each night}}
+							<li>{{{this}}}</li>
+						{{/each}}
+					</ol>
+				</div>
+			</div>
+
 		</div>
-		<div class="other-planets">
+		<div class="other-planets  col-xs-6 col-md-4">
 			{{#each transit}}
 				{{{this}}} &dot; 
 			{{/each}}
