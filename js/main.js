@@ -129,6 +129,7 @@ jQuery(document).ready(function($){
 		date.resh.set = [];
 		date.resh.nadir = [];
 		var times = SunCalc.getTimes( day, '45.5379','-122.714' );
+		times.nadir = SunCalc.getTimes(new Date( day + 24 * 60 * 60 * 1000), '45.5379','-122.714').nadir;
 		var hours = get_planetary_hours( day, times );
 		console.log(hours)
 		date.tdate = get_thelemic_date( day );
