@@ -56,6 +56,7 @@ jQuery(document).ready(function($){
 	];
 
 	function get_thelemic_date( date, time ) {
+		console.log( date, time );
 		if ( date == undefined || date == null ) {
 			date = new Date();
 			dow = date.getDay();
