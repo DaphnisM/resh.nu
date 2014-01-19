@@ -168,7 +168,7 @@ class WPephemeris {
 	public function get_zodiac() {
 
 		$date = $_GET['date'] ? $_GET['date'] : date( 'd.m.Y' );
-		$timeutc = $_GET['timeutc'] ? $_GET['timeutc'] : date( 'H.i' );
+		$timeutc = $_GET['time'] ? $_GET['time'] : date( 'H.i' );
 
 		$wpephem = new WPephemeris();
 		$chart = $wpephem->get_chart( $date, $time );
