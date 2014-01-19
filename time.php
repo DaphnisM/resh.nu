@@ -170,7 +170,6 @@ class WPephemeris {
 		$date = $_GET['date'] ? $_GET['date'] : date( 'd.m.Y' );
 		$timeutc = $_GET['time'] ? $_GET['time'] : date( 'H.i' );
 
-		$wpephem = new WPephemeris();
 		$chart = $wpephem->get_chart( $date, $time );
 
 		$output .= "<span class='wp-ephemeris'>"; # for html request
