@@ -179,9 +179,9 @@ class WPephemeris {
 			$deg = substr( $chart[$index], 0, 2 ); # degrees is first two chars
 			$sign = substr( $chart[$index], 3, 2 ); # sign is next two chars
 			$json[] = array(
-				$planet,
-				$deg,
-				$this->zodiac[$sign]
+				'planet' => $planet,
+				'deg' => $deg,
+				'sign' => $this->zodiac[$sign]
 			);
 			$output .= $planet['letter'] . " " . $deg . "° ";
 			if ( $svg ) :

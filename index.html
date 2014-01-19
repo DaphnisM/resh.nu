@@ -47,7 +47,7 @@
 				<div class="col-xs-6">
 					<ol class="night">
 						{{#each night}}
-							<li>{{{this.1}}} {{{this.2}}} {{this.3}}}</li>
+							<li>{{{this}}}</li>
 						{{/each}}
 					</ol>
 				</div>
@@ -56,7 +56,7 @@
 		</div>
 		<div class="other-planets  col-xs-12 col-md-6">
 			{{#each curr_planets}}
-				{{{this}}} &dot; 
+				{{{this.planet.letter}}} {{{this.deg}}} {{{this.sign}}} &dot; 
 			{{/each}}
 		</div>
 	</div>
