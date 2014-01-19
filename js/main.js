@@ -123,7 +123,7 @@ jQuery(document).ready(function($){
 
 	function get_date( day ) {
 		var date = [];
-		date.resh, date.resh.rise, date.resh.noon, date.resh.set, date.resh.nadir = [];
+		date.resh.rise, date.resh.noon, date.resh.set, date.resh.nadir, date.resh = [];
 		var times = SunCalc.getTimes( day, '45.5379','-122.714' );
 		var hours = get_planetary_hours( day, times );
 		console.log(hours)
