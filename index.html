@@ -23,10 +23,10 @@
 <script id="entry-template" type="text/x-handlebars-template">
 	<div class="date container">
 		<div class="row">
-			<div class="thelemic-date col-xs-6 col-md-4">
+			<div class="thelemic-date col-xs-12">
 				{{{tdate}}}
 			</div>
-		<div class="resh-times col-xs-6 col-md-4">
+		<div class="resh-times col-xs-12">
 			<h3>ר</h3>
 			<ul>
 				<li>{{{resh.rise}}} {{{get_thelemic_date resh.rise}}}</li>
@@ -35,7 +35,7 @@
 				<li>{{{resh.nadir}}} {{{get_thelemic_date resh.nadir}}}</li>
 			</ul>
 		</div>
-		<div class="planetary-hours col-xs-6 col-md-4">
+		<div class="planetary-hours col-xs-12 col-md-6">
 			<div class="row">
 				<div class="col-xs-6">
 					<ol class="day">
@@ -54,7 +54,7 @@
 			</div>
 
 		</div>
-		<div class="other-planets  col-xs-6 col-md-4">
+		<div class="other-planets  col-xs-12 col-md-6">
 			{{#each transit}}
 				{{{this}}} &dot; 
 			{{/each}}
