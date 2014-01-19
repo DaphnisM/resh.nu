@@ -56,7 +56,6 @@ jQuery(document).ready(function($){
 	];
 
 	function get_thelemic_date( date, time ) {
-		console.log( date, time );
 		if ( date == undefined || date == null ) { // if we have no date
 			date = new Date();
 			dow = date.getDay();
@@ -64,10 +63,6 @@ jQuery(document).ready(function($){
 		}
 		if ( time == undefined || time == null ) { // if we have no time
 			time = new Date();
-			time = time.format('UTC:H.MM');
-		}
-		if ( typeof time == "string" ) { // if time is actually a string, format it
-			time = new Date( time );
 			time = time.format('UTC:H.MM');
 		}
 		if ( date instanceof Date ) { // if date is a Date
@@ -133,21 +128,23 @@ jQuery(document).ready(function($){
 		var hours = get_planetary_hours( day, times );
 		console.log(hours)
 		date.tdate = get_thelemic_date( day );
-		date.resh.rise = times.sunrise.format( 'shortTime' );
-		date.resh.noon = times.solarNoon.format( 'shortTime' );
-		date.resh.set = times.sunset.format( 'shortTime' );
-		date.resh.nadir = times.nadir.format( 'shortTime' );
+		date.resh.rise.hd = times.sunrise.format( 'shortTime' );
+		date.resh.noon.hd = times.solarNoon.format( 'shortTime' );
+		date.resh.set.hd = times.sunset.format( 'shortTime' );
+		date.resh.nadir.hd = times.nadir.format( 'shortTime' );
+		date.resh.rise.td = get_thelemic_date( times.sunrise );
+		date.resh.noon.td = get_thelemic_date( times.solarNoon );
+		date.resh.set.td = get_thelemic_date( times.sunset );
+		date.resh.nadir.td = get_thelemic_date( times.nadir );
 		date.day = hours.day;
 		date.night = hours.night;
 		return date;
 	}
 
 	var source   = $("#entry-template").html();
-	Handlebars.registerHelper('get_thelemic_date', function(date) {return get_thelemic_date(date);});
 	var template = Handlebars.compile(source);
 	var today = get_date( new Date() );
 	var tomorrow = get_date( new Date(new Date().getTime() + 24 * 60 * 60 * 1000) );
 	var html = template( today );
 	jQuery('body').append( html );
-	// jQuery('body').append( template( tomorrow ) );
 });
