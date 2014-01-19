@@ -55,7 +55,7 @@ jQuery(document).ready(function($){
 		1
 	];
 
-	function get_thelemic_date( date, time ) {
+	function format_ephem( date, time ) {
 		if ( date == undefined || date == null ) { // if we have no date
 			date = new Date();
 			dow = date.getDay();
@@ -70,6 +70,13 @@ jQuery(document).ready(function($){
 			time = date.format('UTC:H.MM');
 			date = date.format('UTC:dd.mm.yyyy');
 		}
+		return { date: date, time: time };
+	}
+
+	function get_thelemic_date( date, time ) {
+		format = format_ephem( date, time );
+		date = format.date;
+		time = format.time;
 		tdate = $.ajax({
 			url : 'http://hermpheus.com/time.php?action=thelemic_date',
 			data : '&date=' + date + "&time=" + time,
@@ -78,6 +85,20 @@ jQuery(document).ready(function($){
 		});
 		thelemic_date = tdate.responseText + " dies " + planets[dow]['letter'];
 		return thelemic_date;
+	}
+
+	function get_planets( date, time ) {
+		format = format_ephem( date, time );
+		date = format.date;
+		time = format.time;
+		curr_planets = $.ajax({
+			url : 'http://hermpheus.com/time.php?action=zodiac_chart&format=json',
+			data : '&date=' + date + "&time=" + time,
+			async : false,
+			success : function( data ) { return data; }
+		});
+		planets = JSON.parse(curr_planets.responseText);
+		return planets;
 	}
 
 	function get_planetary_hours( date, times ) {
