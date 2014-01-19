@@ -138,7 +138,7 @@ jQuery(document).ready(function($){
 	}
 
 	var source   = $("#entry-template").html();
-	Handlebars.registerHelper('get_thelemic_date', get_thelemic_date);
+	Handlebars.registerHelper('get_thelemic_date', function(date) {return get_thelemic_date(date);});
 	var template = Handlebars.compile(source);
 	var today = get_date( new Date() );
 	var tomorrow = get_date( new Date(new Date().getTime() + 24 * 60 * 60 * 1000) );
