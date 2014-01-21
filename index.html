@@ -19,12 +19,22 @@
 				<div class="resh-times col-xs-12">
 					<h3>ר</h3>
 					<ul>
-						{{#each resh}}
-							<li>
-								<span class="time-display">{{{this.hd}}}</span> &middot; 
-								<span class="tdate-display">{{{removeAnno this.td}}}</span>
-							</li>
-						{{/each}}
+						<li>
+							<span class="time">{{{resh.rise.hd}}}</span> &middot; 
+							<span class="tdate">{{{removeAnno resh.rise.td}}}</span>
+						</li>
+						<li>
+							<span class="time">{{{resh.noon.hd}}}</span> &middot; 
+							<span class="tdate">{{{removeAnno resh.noon.td}}}</span>
+						</li>
+						<li>
+							<span class="time">{{{resh.set.hd}}}</span> &middot; 
+							<span class="tdate">{{{removeAnno resh.set.td}}}</span>
+						</li>
+						<li>
+							<span class="time">{{{resh.nadir.hd}}}</span> &middot; 
+							<span class="tdate">{{{removeAnno resh.nadir.td}}}</span>
+						</li>
 					</ul>
 				</div>
 				<div class="planetary-hours col-xs-12 col-md-12">
