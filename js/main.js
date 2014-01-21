@@ -165,15 +165,16 @@ jQuery(document).ready(function($){
 		date.resh.nadir.td = get_thelemic_date( times.nadir );
 		date.day = hours.day;
 		date.night = hours.night;
-		// date.curr_planets = get_planets( day );
+		date.curr_planets = get_planets( day );
 		return date;
 	}
 
-	var source   = $("#entry-template").html();
 	Handlebars.registerHelper('removeAnno', function(str){
 		str = str.substring( 0, str.indexOf("Anno"));
 		return str;
 	});
+
+	var source   = $("#entry-template").html();
 	var template = Handlebars.compile(source);
 	var today = get_date( new Date() );
 	var tomorrow = get_date( new Date(new Date().getTime() + 24 * 60 * 60 * 1000) );
