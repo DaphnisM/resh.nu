@@ -78,7 +78,7 @@ jQuery(document).ready(function($){
 		date = format.date;
 		time = format.time;
 		tdate = $.ajax({
-			url : 'http://hermpheus.com/time.php?action=thelemic_date',
+			url : 'http://he.rpmhe.us/time.php?action=thelemic_date',
 			data : '&date=' + date + "&time=" + time,
 			async : false,
 			success : function( data ) { return data; }
@@ -92,7 +92,7 @@ jQuery(document).ready(function($){
 		date = format.date;
 		time = format.time;
 		curr_planets = $.ajax({
-			url : 'http://hermpheus.com/time.php?action=zodiac_chart&format=json',
+			url : 'http://he.rmphe.us/time.php?action=zodiac_chart&format=json',
 			data : 'date=' + date + "&time=" + time,
 			async : false,
 			success : function( data ) { return data; }
@@ -143,6 +143,33 @@ jQuery(document).ready(function($){
 		return hours;
 	}
 
+	function set_alarms( times ) {
+		window.plugin.notification.local.add({
+			id:      1, // is converted to a string
+			title:   'Ra',
+			message: 'Resh.',
+			date:    times.sunrise
+		});
+		window.plugin.notification.local.add({
+			id:      2, // is converted to a string
+			title:   'Ahathoor',
+			message: 'Resh.',
+			date:    times.solarNoon
+		});
+		window.plugin.notification.local.add({
+			id:      3, // is converted to a string
+			title:   'Tum',
+			message: 'Resh.',
+			date:    times.sunset
+		});
+		window.plugin.notification.local.add({
+			id:      4, // is converted to a string
+			title:   'Khephra',
+			message: 'Resh.',
+			date:    times.nadir
+		});
+	}
+
 	function get_date( day ) {
 		var date = [];
 		date.resh = [];
@@ -151,6 +178,7 @@ jQuery(document).ready(function($){
 		date.resh.set = [];
 		date.resh.nadir = [];
 		var times = SunCalc.getTimes( day, '45.5379','-122.714' );
+		// set_alarms( times );
 		times.nadir = SunCalc.getTimes(new Date( day.getTime() + 24 * 60 * 60 * 1000), '45.5379','-122.714').nadir;
 		var hours = get_planetary_hours( day, times );
 		console.log(hours)
@@ -180,4 +208,16 @@ jQuery(document).ready(function($){
 	var tomorrow = get_date( new Date(new Date().getTime() + 24 * 60 * 60 * 1000) );
 	var html = template( today );
 	jQuery('body').append( html );
+
+	// var now                  = new Date().getTime(),
+	//     _60_seconds_from_now = new Date(now + 60*1000);
+
+	// window.plugin.notification.local.add({
+	//     id:      1, // is converted to a string
+	//     title:   'Reminder',
+	//     message: 'Dont forget to buy some flowers.',
+	//     repeat:  'weekly',
+	//     date:    now
+	// });
+
 });
