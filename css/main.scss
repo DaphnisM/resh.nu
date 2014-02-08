@@ -146,10 +146,17 @@ body {
   right: 60%;
 }
 
-.resh-times li {
+.resh-times {
+  ul {}
+  li {
   width: 50%;
-  float: left;
+  float: left; }
 }
+
+ .resh-times ul {list-style: none; padding-left: 0px; }
+ .resh times ul li {margin-left: 0px;}
+ .planetary-hours ol {list-style: none; padding-left: 0px;}
+ .planetary-hours ol .zodiac-sign{ margin-right :8px; }
 
 $base03:    #002b36;
 $base02:    #073642;

@@ -118,6 +118,20 @@ body {
   width: 50%;
   float: left; }
 
+.resh-times ul {
+  list-style: none;
+  padding-left: 0px; }
+
+.resh times ul li {
+  margin-left: 0px; }
+
+.planetary-hours ol {
+  list-style: none;
+  padding-left: 0px; }
+
+.planetary-hours ol .zodiac-sign {
+  margin-right: 8px; }
+
 /* light is default mode, so pair with general html definition */
 html, .light {
   background-color: #fdf6e3;
