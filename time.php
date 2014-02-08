@@ -147,7 +147,7 @@ class WPephemeris {
 		# run swetest with date information and separate out results by newlines
 		$swetest = 'src/swetest';
 		$result = `$swetest -b$date -t$time -fTZ -roundmin -head 2>&1`;
-		echo "<!-- " . var_export( $result, true ) . "-->";
+		echo "\<!-- " . var_export( $result, true ) . "--\>";
 		$chart = explode( "\n", $result );
 
 		# trim excess information - swetest repeats the date and time
