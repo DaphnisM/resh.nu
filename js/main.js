@@ -78,7 +78,7 @@ jQuery(document).ready(function($){
 		date = format.date;
 		time = format.time;
 		tdate = $.ajax({
-			url : 'http://he.rpmhe.us/time.php?action=thelemic_date',
+			url : 'http://he.rmphe.us/time.php?action=thelemic_date',
 			data : '&date=' + date + "&time=" + time,
 			async : false,
 			success : function( data ) { return data; }
