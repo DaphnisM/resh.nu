@@ -144,30 +144,7 @@ jQuery(document).ready(function($){
 	}
 
 	function set_alarms( times ) {
-		window.plugin.notification.local.add({
-			id:      1, // is converted to a string
-			title:   'Ra',
-			message: 'Resh.',
-			date:    times.sunrise
-		});
-		window.plugin.notification.local.add({
-			id:      2, // is converted to a string
-			title:   'Ahathoor',
-			message: 'Resh.',
-			date:    times.solarNoon
-		});
-		window.plugin.notification.local.add({
-			id:      3, // is converted to a string
-			title:   'Tum',
-			message: 'Resh.',
-			date:    times.sunset
-		});
-		window.plugin.notification.local.add({
-			id:      4, // is converted to a string
-			title:   'Khephra',
-			message: 'Resh.',
-			date:    times.nadir
-		});
+
 	}
 
 	function get_date( day ) {
@@ -209,15 +186,40 @@ jQuery(document).ready(function($){
 	var html = template( today );
 	jQuery('body').append( html );
 
-	// var now                  = new Date().getTime(),
-	//     _60_seconds_from_now = new Date(now + 60*1000);
+	    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
 
-	// window.plugin.notification.local.add({
-	//     id:      1, // is converted to a string
-	//     title:   'Reminder',
-	//     message: 'Dont forget to buy some flowers.',
-	//     repeat:  'weekly',
-	//     date:    now
-	// });
+    // device APIs are available
+    //
+
+
 
 });
+    function onDeviceReady() {
+        // Empty
+        navigator.notification.beep(3);
+
+    }
+
+    // Show a custom alert
+    //
+    function showAlert() {
+        navigator.notification.alert(
+            'You are the winner!',  // message
+            'Game Over',            // title
+            'Done'                  // buttonName
+        );
+    }
+
+    // Beep three times
+    //
+    function playBeep() {
+        navigator.notification.beep(3);
+    }
+
+    // Vibrate for 2 seconds
+    //
+    function vibrate() {
+        navigator.notification.vibrate(2000);
+    }
