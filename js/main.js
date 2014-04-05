@@ -155,10 +155,8 @@ jQuery(document).ready(function($){
 		date.resh.set = [];
 		date.resh.nadir = [];
 		var times = SunCalc.getTimes( day, '45.5379','-122.714' );
-		// set_alarms( times );
 		times.nadir = SunCalc.getTimes(new Date( day.getTime() + 24 * 60 * 60 * 1000), '45.5379','-122.714').nadir;
 		var hours = get_planetary_hours( day, times );
-		console.log(hours)
 		date.tdate = get_thelemic_date( day );
 		date.resh.rise.hd = times.sunrise.format( 'shortTime' );
 		date.resh.noon.hd = times.solarNoon.format( 'shortTime' );
@@ -186,40 +184,4 @@ jQuery(document).ready(function($){
 	var html = template( today );
 	jQuery('body').append( html );
 
-	    // Wait for device API libraries to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    // device APIs are available
-    //
-
-
-
 });
-    function onDeviceReady() {
-        // Empty
-        navigator.notification.beep(3);
-
-    }
-
-    // Show a custom alert
-    //
-    function showAlert() {
-        navigator.notification.alert(
-            'You are the winner!',  // message
-            'Game Over',            // title
-            'Done'                  // buttonName
-        );
-    }
-
-    // Beep three times
-    //
-    function playBeep() {
-        navigator.notification.beep(3);
-    }
-
-    // Vibrate for 2 seconds
-    //
-    function vibrate() {
-        navigator.notification.vibrate(2000);
-    }
