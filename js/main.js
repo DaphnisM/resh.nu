@@ -185,9 +185,9 @@ jQuery(document).ready(function($){
 	jQuery('body').append( html );
 
 	jQuery('.datepicker input').datepicker({
-		dateFormat : "@",
-		onSelect : function (date) {
-			var date = new Date(date*1000);
+		dateFormat : "mm/dd/yy",
+		onSelect : function (date, inst) {
+			var toDate = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
 			var astrodate = get_date( date );
 			var html = template( astrodate );
 			jQuery('.date').empty().append( html );
