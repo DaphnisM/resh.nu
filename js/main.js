@@ -184,4 +184,14 @@ jQuery(document).ready(function($){
 	var html = template( today );
 	jQuery('body').append( html );
 
+	jQuery('.datepicker input').datepicker({
+		dateFormat : "@"
+		onSelect : function (date) {
+			var date = new Date(date*1000);
+			var astrodate = get_date( date );
+			var html = template( astrodate );
+			jQuery('body').append( html );
+		}
+	});
+
 });
