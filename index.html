@@ -11,12 +11,13 @@
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	</head>
 	<body class="dark">
-		<script id="entry-template" type="text/x-handlebars-template">
-			<div class="datepicker">
-				<div class="form-group">
-					<input type="text" class="date" />
-				</div>
+		<div class="datepicker">
+			<div class="form-group">
+				<label for="date">Date: </label>
+				<input type="text" class="date" name="date" />
 			</div>
+		</div>
+		<script id="entry-template" type="text/x-handlebars-template">
 			<div class="date container">
 				<div class="row">
 					<div class="thelemic-date col-xs-12">

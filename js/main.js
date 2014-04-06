@@ -190,7 +190,7 @@ jQuery(document).ready(function($){
 			var date = new Date(date*1000);
 			var astrodate = get_date( date );
 			var html = template( astrodate );
-			jQuery('body').append( html );
+			jQuery('.date').empty().append( html );
 		}
 	});
 
