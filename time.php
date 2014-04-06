@@ -232,9 +232,11 @@ class WPephemeris {
 		$diff = abs(strtotime($date2) - strtotime($date1));
 
 		$years = floor( $diff / ( 365*60*60*24 ) );
-		$first = $years / 22;
-		$second = $years % 22;
-		$output .= $this->roman_number( $first ) . ":" . strtolower( $this->roman_number( $second ) );
+		$first = $this->roman_number( $years / 22 );
+		$second = $this->roman_number( $years % 22 );
+		$second = strtolower( $second );
+		$second = $second ? $second : '0';
+		$output .= "$first:$second";
 		echo $output;
 		exit();
 	}
@@ -256,7 +258,7 @@ class WPephemeris {
 			'IX' => 9, 
 			'V'  => 5, 
 			'IV' => 4, 
-			'I'  => 1
+			'I'  => 1,
 		); 
 
 		foreach ( $roman_numerals as $roman => $number ) { 
