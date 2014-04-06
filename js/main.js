@@ -187,7 +187,6 @@ jQuery(document).ready(function($){
 	jQuery('body').append( html );
 
 	jQuery('.datepicker input').datepicker({
-		defaultDate : new Date(),
 		dateFormat : "mm/dd/yy",
 		onSelect : function (date, inst) {
 			var dateObj = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
