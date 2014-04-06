@@ -11,58 +11,62 @@
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	</head>
 	<body class="dark">
+<div class="row">
+    <div class="col-md-2 col-md-offset-5">
 		<div class="datepicker">
 			<div class="form-group">
 				<label for="date">Date: </label>
 				<input type="text" class="date" name="date" />
 			</div>
 		</div>
-		<script id="entry-template" type="text/x-handlebars-template">
-			<div class="date container">
-				<div class="row">
-					<div class="thelemic-date col-xs-12">
-						{{{tdate}}}
-					</div>
-				<div class="resh-times col-xs-12">
-					<ul>
-						<li>
-							<span class="time">{{{resh.rise.hd}}}</span><br />
-							<span class="tdate">{{{removeAnno resh.rise.td}}}</span>
-						</li>
-						<li>
-							<span class="time">{{{resh.noon.hd}}}</span><br />
-							<span class="tdate">{{{removeAnno resh.noon.td}}}</span>
-						</li>
-						<li>
-							<span class="time">{{{resh.set.hd}}}</span><br />
-							<span class="tdate">{{{removeAnno resh.set.td}}}</span>
-						</li>
-						<li>
-							<span class="time">{{{resh.nadir.hd}}}</span><br />
-							<span class="tdate">{{{removeAnno resh.nadir.td}}}</span>
-						</li>
-					</ul>
+    </div>
+</div>
+<script id="entry-template" type="text/x-handlebars-template">
+	<div class="date container">
+		<div class="row">
+			<div class="thelemic-date col-xs-12">
+				{{{tdate}}}
+			</div>
+		<div class="resh-times col-xs-12">
+			<ul>
+				<li>
+					<span class="time">{{{resh.rise.hd}}}</span><br />
+					<span class="tdate">{{{removeAnno resh.rise.td}}}</span>
+				</li>
+				<li>
+					<span class="time">{{{resh.noon.hd}}}</span><br />
+					<span class="tdate">{{{removeAnno resh.noon.td}}}</span>
+				</li>
+				<li>
+					<span class="time">{{{resh.set.hd}}}</span><br />
+					<span class="tdate">{{{removeAnno resh.set.td}}}</span>
+				</li>
+				<li>
+					<span class="time">{{{resh.nadir.hd}}}</span><br />
+					<span class="tdate">{{{removeAnno resh.nadir.td}}}</span>
+				</li>
+			</ul>
+		</div>
+		<div class="planetary-hours col-xs-12 col-md-12">
+			<div class="row">
+				<div class="col-xs-6">
+					<ol class="day">
+						{{#each day}}
+							<li>{{{this}}}</li>
+						{{/each}}
+					</ol>
 				</div>
-				<div class="planetary-hours col-xs-12 col-md-12">
-					<div class="row">
-						<div class="col-xs-6">
-							<ol class="day">
-								{{#each day}}
-									<li>{{{this}}}</li>
-								{{/each}}
-							</ol>
-						</div>
-						<div class="col-xs-6">
-							<ol class="night">
-								{{#each night}}
-									<li>{{{this}}}</li>
-								{{/each}}
-							</ol>
-						</div>
-					</div>
+				<div class="col-xs-6">
+					<ol class="night">
+						{{#each night}}
+							<li>{{{this}}}</li>
+						{{/each}}
+					</ol>
 				</div>
 			</div>
-		</script>
+		</div>
+	</div>
+</script>
 		<script type="text/javascript" src="js/vendor/jquery-1.10.2.min.js"></script>
 		<script src="js/plugins.js"></script>
 		<script src="js/main.js"></script>
