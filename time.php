@@ -181,14 +181,14 @@ class WPephemeris {
 			$json[] = array(
 				'planet' => $planet,
 				'deg' => $deg,
-				'sign' => $this->zodiac[$sign]
+				'sign' => $this->symbol[$sign]
 			);
 			$output .= $planet['letter'] . " " . $deg . "° ";
 			if ( $svg ) :
-				$url = plugin_dir_url( __FILE__  ) . 'svgs/' . $this->zodiac[$sign]['name'] . '.svg';
+				$url = plugin_dir_url( __FILE__  ) . 'svgs/' . $this->symbol[$sign]['name'] . '.svg';
 				$output .= "<img width='15'src='$url' />";
 			else :
-				$output .= $this->zodiac[$sign]['letter'] .'';
+				$output .= $this->symbol[$sign]['letter'] .'';
 			endif;
 
 		endforeach;
