@@ -185,7 +185,7 @@ jQuery(document).ready(function($){
 	jQuery('body').append( html );
 
 	jQuery('.datepicker input').datepicker({
-		dateFormat : "@"
+		dateFormat : "@",
 		onSelect : function (date) {
 			var date = new Date(date*1000);
 			var astrodate = get_date( date );
