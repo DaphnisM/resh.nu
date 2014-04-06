@@ -122,7 +122,8 @@ jQuery(document).ready(function($){
 				daynow = 0;
 			hstart = new Date( hrend.getTime() );
 			hrend = new Date( hrend.getTime() + dayhourlength );
-			day.push( planets[planetary_hours[daynow]]['letter'] + " " + hstart.format('shortTime') + " - " + hrend.format('shortTime'));
+			day.push( planets[planetary_hours[daynow]]['symbol']
+			 + " " + hstart.format('shortTime') + " - " + hrend.format('shortTime'));
 			daynow++;
 		}
 
@@ -131,7 +132,8 @@ jQuery(document).ready(function($){
 				daynow = 0;
 			hstart = new Date( hrend.getTime() );
 			hrend = new Date( hrend.getTime() + nighthourlength );
-			night.push( planets[planetary_hours[daynow]]['letter'] + " " + hstart.format('shortTime') + " - " + hrend.format('shortTime'));
+			night.push( planets[planetary_hours[daynow]]['symbol']
+			 + " " + hstart.format('shortTime') + " - " + hrend.format('shortTime'));
 			daynow++;
 		}
 
