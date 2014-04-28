@@ -1,5 +1,5 @@
 var app = angular.module('main', [])
-.controller('astrodate', function($scope, $http, $timeout, $log) {
+.controller('astrodate', function($scope, $http, $sce, $timeout, $log) {
 
 	var planets = [
 		{
@@ -175,12 +175,14 @@ var app = angular.module('main', [])
 	function set_date( date ) {
 		for (var i in today)
 		{
-			$scope[i] = today[i];
+			$scope[i] = $sce.trustAsHtml(today[i]);
 		}
 	}
 
 	var today = get_date( new Date() );
 	var tomorrow = get_date( new Date(new Date().getTime() + 24 * 60 * 60 * 1000) );
+
+	$sce.trustAsHtml
 
 	set_date(today);
 
