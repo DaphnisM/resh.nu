@@ -1,5 +1,6 @@
-jQuery(document).ready(function($){
-	
+var app = angular.module('main')
+.controller('astrodate', function($scope, $http, $timeout, cfpLoadingBar, $log) {
+
 	var planets = [
 		{
 			'name' : 'Sun',
@@ -54,6 +55,7 @@ jQuery(document).ready(function($){
 		3,
 		1
 	];
+
 
 	function format_ephem( date, time ) {
 		if ( date == undefined || date == null ) { // if we have no date
@@ -145,10 +147,6 @@ jQuery(document).ready(function($){
 		return hours;
 	}
 
-	function set_alarms( times ) {
-
-	}
-
 	function get_date( day ) {
 		var date = [];
 		date.resh = [];
@@ -174,26 +172,23 @@ jQuery(document).ready(function($){
 		return date;
 	}
 
-	Handlebars.registerHelper('removeAnno', function(str){
-		str = str.substring( 0, str.indexOf("Anno"));
-		return str;
-	});
+	function set_date( date ) {
+		for (var i in today)
+		{
+			$scope[i] = today[i];
+		}
+	}
 
-	var source   = $("#entry-template").html();
-	var template = Handlebars.compile(source);
 	var today = get_date( new Date() );
 	var tomorrow = get_date( new Date(new Date().getTime() + 24 * 60 * 60 * 1000) );
-	var html = template( today );
-	jQuery('body').append( html );
+
 
 	jQuery('.datepicker input').datepicker({
 		dateFormat : "mm/dd/yy",
 		onSelect : function (date, inst) {
 			var dateObj = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
 			var astrodate = get_date( dateObj );
-			var html = template( astrodate );
-			jQuery('.date').empty().append( html );
+
 		}
 	});
-
 });
