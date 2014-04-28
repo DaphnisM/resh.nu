@@ -1,4 +1,5 @@
-var app = angular.controller('astrodate', function($scope, $http, $timeout, cfpLoadingBar, $log) {
+var app = angular.module('main')
+.controller('astrodate', function($scope, $http, $timeout, $log) {
 
 	var planets = [
 		{
