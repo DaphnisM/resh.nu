@@ -182,6 +182,7 @@ var app = angular.module('main', [])
 	var today = get_date( new Date() );
 	var tomorrow = get_date( new Date(new Date().getTime() + 24 * 60 * 60 * 1000) );
 
+	set_date(today);
 
 	jQuery('.datepicker input').datepicker({
 		dateFormat : "mm/dd/yy",
