@@ -34,19 +34,19 @@
 		<ul>
 			<li>
 				<span class="time" ng-bind="resh.rise.hd"></span><br />
-				<span class="tdate" ng-bind="removeAnno(resh.rise.td)"></span>
+				<span class="tdate" ng-bind-html="removeAnno(resh.rise.td)"></span>
 			</li>
 			<li>
 				<span class="time" ng-bind="resh.noon.hd"></span><br />
-				<span class="tdate" ng-bind="removeAnno(resh.rise.td)"></span>
+				<span class="tdate" ng-bind-html="removeAnno(resh.rise.td)"></span>
 			</li>
 			<li>
 				<span class="time" ng-bind="resh.set.hd"></span><br />
-				<span class="tdate" ng-bind="removeAnno(resh.set.td)"></span>
+				<span class="tdate" ng-bind-html="removeAnno(resh.set.td)"></span>
 			</li>
 			<li>
 				<span class="time" ng-bind="resh.nadir.hd"></span><br />
-				<span class="tdate" ng-bind="removeAnno(resh.nadir.td)"></span>
+				<span class="tdate" ng-bind-html="removeAnno(resh.nadir.td)"></span>
 			</li>
 		</ul>
 	</div>
@@ -54,12 +54,12 @@
 		<div class="row">
 			<div class="col-xs-6">
 				<ol class="day">
-					<li ng-repeat="(key, hour) in day"><span class="planetary-hour day" ng-bind="hour"></span></li>
+					<li ng-repeat="(key, hour) in day"><span class="planetary-hour day" ng-bind-html="hour"></span></li>
 				</ol>
 			</div>
 			<div class="col-xs-6">
 				<ol class="night">
-					<li ng-repeat="(key, hour) in night"><span class="planetary-hour day" ng-bind="hour"></span></li>
+					<li ng-repeat="(key, hour) in night"><span class="planetary-hour day" ng-bind-html="hour"></span></li>
 				</ol>
 			</div>
 		</div>
