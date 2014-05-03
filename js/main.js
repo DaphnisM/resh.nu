@@ -175,7 +175,11 @@ var app = angular.module('main', [])
 	function set_date( date ) {
 		for (var i in today)
 		{
-			$scope[i] = $sce.trustAsHtml(today[i]);
+			if (___.isString(today[i]))
+				$scope[i] = $sce.trustAsHtml(today[i]);
+			else
+				$scope[i] = today[i];
+
 		}
 	}
 
