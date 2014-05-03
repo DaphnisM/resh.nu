@@ -184,6 +184,12 @@ var app = angular.module('main', [])
 
 	var today = new Date();
 
+	$scope.resh = [];
+	$scope.resh.rise = [];
+	$scope.resh.noon = [];
+	$scope.resh.set = [];
+	$scope.resh.nadir = [];
+
 	// Initialize to today.
 	set_date(today);
 
