@@ -178,6 +178,7 @@ var app = angular.module('main', [])
 			var dateObj = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
 			$log.log(date, inst, dateObj);
 			set_date(dateObj);
+			$scope.$apply();
 		}
 	});
 });
