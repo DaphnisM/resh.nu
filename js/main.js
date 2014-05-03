@@ -170,8 +170,7 @@ var app = angular.module('main', [])
 		return date;
 	}
 
-	set_date(new Date());
-
+	// JQuery-ui datepicker
 	jQuery('.datepicker input').datepicker({
 		dateFormat : "mm/dd/yy",
 		onSelect : function (date, inst) {
@@ -181,4 +180,7 @@ var app = angular.module('main', [])
 			$scope.$apply();
 		}
 	});
+
+	// Initialize to today.
+	set_date(new Date());
 });
