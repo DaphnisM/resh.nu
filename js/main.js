@@ -86,7 +86,7 @@ var app = angular.module('main', [])
 			success : function( data ) { return data; }
 		});
 		thelemic_date = tdate.responseText + " dies " + planets[dow]['letter'];
-		return thelemic_date;
+		return $sce.trustAsHtml(thelemic_date);
 	}
 
 	function get_planets( date, time ) {
@@ -175,11 +175,7 @@ var app = angular.module('main', [])
 	function set_date( date ) {
 		for (var i in today)
 		{
-			if (i == 'resh')
-				$scope[i] = $sce.trustAsHtml(today[i]);
-			else
-				$scope[i] = today[i];
-
+			$scope[i] = today[i];
 		}
 	}
 
