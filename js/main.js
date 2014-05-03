@@ -144,47 +144,38 @@ var app = angular.module('main', [])
 		};
 	}
 
-	function get_date( day ) {
-		var date = [];
-		date.resh = [];
-		date.resh.rise = [];
-		date.resh.noon = [];
-		date.resh.set = [];
-		date.resh.nadir = [];
-		var times = SunCalc.getTimes( day, '45.5379','-122.714' );
-		times.nadir = SunCalc.getTimes(new Date( day.getTime() + 24 * 60 * 60 * 1000), '45.5379','-122.714').nadir;
-		var hours = get_planetary_hours( day, times );
-		date.tdate = get_thelemic_date( day );
-		date.resh.rise.hd = times.sunrise.format( 'shortTime' );
-		date.resh.noon.hd = times.solarNoon.format( 'shortTime' );
-		date.resh.set.hd = times.sunset.format( 'shortTime' );
-		date.resh.nadir.hd = times.nadir.format( 'shortTime' );
-		date.resh.rise.td = get_thelemic_date( times.sunrise );
-		date.resh.noon.td = get_thelemic_date( times.solarNoon );
-		date.resh.set.td = get_thelemic_date( times.sunset );
-		date.resh.nadir.td = get_thelemic_date( times.nadir );
-		date.day = hours.day;
-		date.night = hours.night;
-		date.curr_planets = get_planets( day );
+	function set_date( date ) {
+		$scope.resh = [];
+		$scope.resh.rise = [];
+		$scope.resh.noon = [];
+		$scope.resh.set = [];
+		$scope.resh.nadir = [];
+		var times = SunCalc.getTimes( date, '45.5379','-122.714' );
+		times.nadir = SunCalc.getTimes(new Date( date.getTime() + 24 * 60 * 60 * 1000), '45.5379','-122.714').nadir;
+		var hours = get_planetary_hours( date, times );
+		$scope.tdate = get_thelemic_date( date );
+		$scope.resh.rise.hd = times.sunrise.format( 'shortTime' );
+		$scope.resh.noon.hd = times.solarNoon.format( 'shortTime' );
+		$scope.resh.set.hd = times.sunset.format( 'shortTime' );
+		$scope.resh.nadir.hd = times.nadir.format( 'shortTime' );
+		$scope.resh.rise.td = get_thelemic_date( times.sunrise );
+		$scope.resh.noon.td = get_thelemic_date( times.solarNoon );
+		$scope.resh.set.td = get_thelemic_date( times.sunset );
+		$scope.resh.nadir.td = get_thelemic_date( times.nadir );
+		$scope.day = hours.day;
+		$scope.night = hours.night;
+		$scope.curr_planets = get_planets( date );
 		return date;
 	}
 
-	function set_date( date ) {
-		for (var i in today)
-		{
-			$scope[i] = today[i];
-		}
-	}
-
-	var today = get_date( new Date() );
-
-	set_date(today);
+	set_date(new Date());
 
 	jQuery('.datepicker input').datepicker({
 		dateFormat : "mm/dd/yy",
 		onSelect : function (date, inst) {
 			var dateObj = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
-			var astrodate = get_date( dateObj );
+			$log.log(date, inst, dateObj);
+			set_date( dateObj );
 		}
 	});
 });
