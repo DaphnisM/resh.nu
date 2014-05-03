@@ -22,9 +22,11 @@
 							<input type="text" class="date form-control" name="date" ng-model="date" />
 							<select class="form-control" class="hour" name="hour" 
 							 ng-model="time.hour"
-							 ng-options="i for i in Array.apply(null, {length: 24}).map(Number.call, Number)">
+							 ng-options="i for i in hours">
 							</select>
-							<select class="form-control" class="minute" name="minute" ng-model="time.minute"></select>
+							<select class="form-control" class="minute" name="minute"
+							 ng-model="time.minute"
+							 ng-options="i for i in minutes"></select>
 						</div>
 					</div>
 			    </div>

@@ -1,6 +1,9 @@
 var app = angular.module('main', [])
 .controller('astrodate', function($scope, $http, $sce, $timeout, $log) {
 
+	$scope.hours = Array.apply(null, {length: 24}).map(Number.call, Number);
+	$scope.minutes = Array.apply(null, {length: 60}).map(Number.call, Number);
+
 	var planets = [
 		{
 			'name' : 'Sun',
