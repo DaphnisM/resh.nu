@@ -20,13 +20,13 @@
 						<div class="form-group">
 							<label for="date" class="sr-only">Date: </label>
 							<input type="text" class="date form-control" name="date" ng-model="date" />
-							<select class="form-control" class="hour" name="hour" 
-							 ng-model="time.hour"
+<!-- 							<select class="form-control" class="hour"
+							 ng-model="hour"
 							 ng-options="i for i in hours">
 							</select>
-							<select class="form-control" class="minute" name="minute"
-							 ng-model="time.minute"
-							 ng-options="i for i in minutes"></select>
+							<select class="form-control" class="minute"
+							 ng-model="minute"
+							 ng-options="i for i in minutes"></select> -->
 						</div>
 					</div>
 			    </div>
@@ -37,19 +37,19 @@
 				<ul>
 					<li>
 						<span class="time" ng-bind="resh.rise.hd"></span><br />
-						<span class="tdate" ng-bind-html="removeAnno(resh.rise.td)"></span>
+						<span class="tdate" ng-bind-html="resh.rise.td"></span>
 					</li>
 					<li>
 						<span class="time" ng-bind="resh.noon.hd"></span><br />
-						<span class="tdate" ng-bind-html="removeAnno(resh.rise.td)"></span>
+						<span class="tdate" ng-bind-html="resh.rise.td"></span>
 					</li>
 					<li>
 						<span class="time" ng-bind="resh.set.hd"></span><br />
-						<span class="tdate" ng-bind-html="removeAnno(resh.set.td)"></span>
+						<span class="tdate" ng-bind-html="resh.set.td"></span>
 					</li>
 					<li>
 						<span class="time" ng-bind="resh.nadir.hd"></span><br />
-						<span class="tdate" ng-bind-html="removeAnno(resh.nadir.td)"></span>
+						<span class="tdate" ng-bind-html="resh.nadir.td"></span>
 					</li>
 				</ul>
 			</div>
