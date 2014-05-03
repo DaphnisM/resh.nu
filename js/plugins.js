@@ -1,8 +1,3 @@
-var toString = Object.prototype.toString;
-$_ = {};
-$_.isString = function (obj) {
-  return toString.call(obj) == '[object String]';
-}
 /*
  (c) 2011-2013, Vladimir Agafonkin
  SunCalc is a JavaScript library for calculating sun/mooon position and light phases.
