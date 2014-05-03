@@ -86,7 +86,7 @@ var app = angular.module('main', [])
 			success : function( data ) { return data; }
 		});
 		thelemic_date = tdate.responseText + " dies " + planets[dow]['letter'];
-		return $sce.trustAsHtml(thelemic_date);
+		return thelemic_date;
 	}
 
 	function get_planets( date, time ) {
@@ -100,7 +100,6 @@ var app = angular.module('main', [])
 			success : function( data ) { return data; }
 		});
 		curr_planets = JSON.parse(curr_planets.responseText);
-		console.log(curr_planets);
 		return curr_planets;
 	}
 
@@ -139,12 +138,10 @@ var app = angular.module('main', [])
 			daynow++;
 		}
 
-		var hours = {
+		return {
 			'day' : day,
 			'night' : night
 		};
-
-		return hours;
 	}
 
 	function get_date( day ) {
@@ -180,7 +177,6 @@ var app = angular.module('main', [])
 	}
 
 	var today = get_date( new Date() );
-	var tomorrow = get_date( new Date(new Date().getTime() + 24 * 60 * 60 * 1000) );
 
 	set_date(today);
 
@@ -189,7 +185,6 @@ var app = angular.module('main', [])
 		onSelect : function (date, inst) {
 			var dateObj = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
 			var astrodate = get_date( dateObj );
-
 		}
 	});
 });
