@@ -80,7 +80,7 @@ var app = angular.module('main', [])
 		date = format.date;
 		time = format.time;
 		tdate = $.ajax({
-			url : 'http://he.rmphe.us/time.php?action=thelemic_date',
+			url : '/time.php?action=thelemic_date',
 			data : '&date=' + date + "&time=" + time,
 			async : false,
 			success : function( data ) { return data; }
@@ -94,7 +94,7 @@ var app = angular.module('main', [])
 		date = format.date;
 		time = format.time;
 		curr_planets = $.ajax({
-			url : 'http://he.rmphe.us/time.php?action=zodiac_chart&format=json',
+			url : '/time.php?action=zodiac_chart&format=json',
 			data : 'date=' + date + "&time=" + time,
 			async : false,
 			success : function( data ) { return data; }
