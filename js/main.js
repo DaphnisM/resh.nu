@@ -192,8 +192,9 @@ var app = angular.module('main', [])
 
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position){
-			set_date(today, position.coords.latitude, position.coords.longitude);
-			$scope.$digest();
+			$scope.$apply(function(){
+				set_date(today, position.coords.latitude, position.coords.longitude);
+			});
 		}, function(errMsg){
 			set_date(today, '45.5379', '-122.714');
 		});
