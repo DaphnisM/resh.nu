@@ -146,9 +146,9 @@ var app = angular.module('main', [])
 		};
 	}
 
-	function set_date( date ) {
-		var times = SunCalc.getTimes( date, '45.5379','-122.714' );
-		times.nadir = SunCalc.getTimes(new Date( date.getTime() + 24 * 60 * 60 * 1000), '45.5379','-122.714').nadir;
+	function set_date( date, lat, longi ) {
+		var times = SunCalc.getTimes( date, lat, longi );
+		times.nadir = SunCalc.getTimes(new Date( date.getTime() + 24 * 60 * 60 * 1000), lat, longi).nadir;
 		var hours = get_planetary_hours( date, times );
 
 		// Now set everything in scope.
@@ -190,8 +190,15 @@ var app = angular.module('main', [])
 	$scope.resh.set = [];
 	$scope.resh.nadir = [];
 
-	// Initialize to today.
-	set_date(today);
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position){
+			set_date(today, position.coords.latitude, position.coords.longitude);
+		}, function(errMsg){
+			set_date(today, '45.5379', '-122.714');
+		});
+	} else {
+		set_date(today, '45.5379', '-122.714');
+	}
 
 	$scope.hours = Array.apply(null, {length: 24}).map(Number.call, Number);
 	$scope.minutes = Array.apply(null, {length: 60}).map(Number.call, Number);
