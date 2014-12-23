@@ -8,63 +8,70 @@
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="bower_components/jqueryui/themes/ui-darkness/jquery-ui.min.css">
 		<script type="text/javascript" src="js/vendor/jquery-1.10.2.min.js"></script>
-		<script src="/bower_components/angular/angular.js"></script>
+		<script src="/bower_components/angular/angular.min.js"></script>
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	</head>
 	<body class="dark" ng-controller="astrodate">
-<div class="container">
-	<div class="row">
-	    <div class="col-md-2 col-md-offset-4">
-			<div class="datepicker form-inline">
-				<div class="form-group">
-					<label for="date" class="sr-only">Date: </label>
-					<input type="text" class="date form-control" name="date" placeholder="Date"/>
-					<!-- <select class="form-control" class="hour" name="hour"></select>
-					<select class="form-control" class="minute" name="minute"></select> -->
+		<div class="container">
+			<div class="row">
+			    <div class="col-md-2 col-md-offset-4">
+					<div class="datepicker form-inline">
+						<div class="form-group">
+							<label for="date" class="sr-only">Date: </label>
+							<input type="text" class="date form-control" name="date" ng-model="date" />
+<!-- 							<select class="form-control" class="hour"
+							 ng-model="hour"
+							 ng-options="i for i in hours">
+							</select>
+							<select class="form-control" class="minute"
+							 ng-model="minute"
+							 ng-options="i for i in minutes"></select> -->
+						</div>
+					</div>
+			    </div>
+			</div>
+			<div class="row">
+				<div class="thelemic-date col-xs-12" ng-bind-html="tdate"></div>
+			<div class="resh-times col-xs-12">
+				<ul>
+					<li>
+						<span class="time" ng-bind="resh.rise.hd"></span><br />
+						<span class="tdate" ng-bind-html="resh.rise.td"></span>
+					</li>
+					<li>
+						<span class="time" ng-bind="resh.noon.hd"></span><br />
+						<span class="tdate" ng-bind-html="resh.noon.td"></span>
+					</li>
+					<li>
+						<span class="time" ng-bind="resh.set.hd"></span><br />
+						<span class="tdate" ng-bind-html="resh.set.td"></span>
+					</li>
+					<li>
+						<span class="time" ng-bind="resh.nadir.hd"></span><br />
+						<span class="tdate" ng-bind-html="resh.nadir.td"></span>
+					</li>
+				</ul>
+			</div>
+			<div class="planetary-hours col-xs-12 col-md-12">
+				<div class="row">
+					<div class="col-xs-6">
+						<ol class="day">
+							<li ng-repeat="(key, hour) in day">
+								<span class="planetary-hour day" ng-bind-html="hour"></span>
+							</li>
+						</ol>
+					</div>
+					<div class="col-xs-6">
+						<ol class="night">
+							<li ng-repeat="(key, hour) in night">
+								<span class="planetary-hour day" ng-bind-html="hour"></span>
+							</li>
+						</ol>
+					</div>
 				</div>
 			</div>
-	    </div>
-	</div>
-</div>
-<div class="date container">
-	<div class="row">
-		<div class="thelemic-date col-xs-12" ng-bind-html="tdate"></div>
-	<div class="resh-times col-xs-12">
-		<ul>
-			<li>
-				<span class="time" ng-bind="resh.rise.hd"></span><br />
-				<span class="tdate" ng-bind-html="removeAnno(resh.rise.td)"></span>
-			</li>
-			<li>
-				<span class="time" ng-bind="resh.noon.hd"></span><br />
-				<span class="tdate" ng-bind-html="removeAnno(resh.rise.td)"></span>
-			</li>
-			<li>
-				<span class="time" ng-bind="resh.set.hd"></span><br />
-				<span class="tdate" ng-bind-html="removeAnno(resh.set.td)"></span>
-			</li>
-			<li>
-				<span class="time" ng-bind="resh.nadir.hd"></span><br />
-				<span class="tdate" ng-bind-html="removeAnno(resh.nadir.td)"></span>
-			</li>
-		</ul>
-	</div>
-	<div class="planetary-hours col-xs-12 col-md-12">
-		<div class="row">
-			<div class="col-xs-6">
-				<ol class="day">
-					<li ng-repeat="(key, hour) in day"><span class="planetary-hour day" ng-bind-html="hour"></span></li>
-				</ol>
-			</div>
-			<div class="col-xs-6">
-				<ol class="night">
-					<li ng-repeat="(key, hour) in night"><span class="planetary-hour day" ng-bind-html="hour"></span></li>
-				</ol>
-			</div>
 		</div>
-	</div>
-</div>
 		<script src="js/plugins.js"></script>
 		<script type="text/javascript" src="bower_components/jqueryui/ui/minified/jquery.ui.core.min.js"></script>
 		<script type="text/javascript" src="bower_components/jqueryui/ui/minified/jquery.ui.datepicker.min.js"></script>

@@ -1,6 +1,6 @@
 var toString = Object.prototype.toString;
-$_ = {};
-$_.isString = function (obj) {
+___ = {};
+___.isString = function (obj) {
   return toString.call(obj) == '[object String]';
 }
 /*

@@ -80,7 +80,7 @@ var app = angular.module('main', [])
 		date = format.date;
 		time = format.time;
 		tdate = $.ajax({
-			url : 'http://he.rmphe.us/time.php?action=thelemic_date',
+			url : '/time.php?action=thelemic_date',
 			data : '&date=' + date + "&time=" + time,
 			async : false,
 			success : function( data ) { return data; }
@@ -94,13 +94,12 @@ var app = angular.module('main', [])
 		date = format.date;
 		time = format.time;
 		curr_planets = $.ajax({
-			url : 'http://he.rmphe.us/time.php?action=zodiac_chart&format=json',
+			url : '/time.php?action=zodiac_chart&format=json',
 			data : 'date=' + date + "&time=" + time,
 			async : false,
 			success : function( data ) { return data; }
 		});
 		curr_planets = JSON.parse(curr_planets.responseText);
-		console.log(curr_planets);
 		return curr_planets;
 	}
 
@@ -124,8 +123,9 @@ var app = angular.module('main', [])
 				daynow = 0;
 			hstart = new Date( hrend.getTime() );
 			hrend = new Date( hrend.getTime() + dayhourlength );
-			day.push( planets[planetary_hours[daynow]]['symbol']
-			 + " " + hstart.format('shortTime') + " - " + hrend.format('shortTime'));
+			var time = planets[planetary_hours[daynow]]['letter']
+			 + " " + hstart.format('shortTime') + " - " + hrend.format('shortTime');
+			day.push($sce.trustAsHtml(time));
 			daynow++;
 		}
 
@@ -134,66 +134,77 @@ var app = angular.module('main', [])
 				daynow = 0;
 			hstart = new Date( hrend.getTime() );
 			hrend = new Date( hrend.getTime() + nighthourlength );
-			night.push( planets[planetary_hours[daynow]]['symbol']
-			 + " " + hstart.format('shortTime') + " - " + hrend.format('shortTime'));
+			var time = planets[planetary_hours[daynow]]['letter']
+			 + " " + hstart.format('shortTime') + " - " + hrend.format('shortTime');
+			night.push($sce.trustAsHtml(time));
 			daynow++;
 		}
 
-		var hours = {
+		return {
 			'day' : day,
 			'night' : night
 		};
-
-		return hours;
 	}
 
-	function get_date( day ) {
-		var date = [];
-		date.resh = [];
-		date.resh.rise = [];
-		date.resh.noon = [];
-		date.resh.set = [];
-		date.resh.nadir = [];
-		var times = SunCalc.getTimes( day, '45.5379','-122.714' );
-		times.nadir = SunCalc.getTimes(new Date( day.getTime() + 24 * 60 * 60 * 1000), '45.5379','-122.714').nadir;
-		var hours = get_planetary_hours( day, times );
-		date.tdate = get_thelemic_date( day );
-		date.resh.rise.hd = times.sunrise.format( 'shortTime' );
-		date.resh.noon.hd = times.solarNoon.format( 'shortTime' );
-		date.resh.set.hd = times.sunset.format( 'shortTime' );
-		date.resh.nadir.hd = times.nadir.format( 'shortTime' );
-		date.resh.rise.td = get_thelemic_date( times.sunrise );
-		date.resh.noon.td = get_thelemic_date( times.solarNoon );
-		date.resh.set.td = get_thelemic_date( times.sunset );
-		date.resh.nadir.td = get_thelemic_date( times.nadir );
-		date.day = hours.day;
-		date.night = hours.night;
-		date.curr_planets = get_planets( day );
-		return date;
+	function set_date( date, lat, longi ) {
+		var times = SunCalc.getTimes( date, lat, longi );
+		times.nadir = SunCalc.getTimes(new Date( date.getTime() + 24 * 60 * 60 * 1000), lat, longi).nadir;
+		var hours = get_planetary_hours( date, times );
+
+		// Now set everything in scope.
+		$scope.tdate = $sce.trustAsHtml( get_thelemic_date( date ) );
+		$scope.resh.rise.hd = times.sunrise.format( 'shortTime' );
+		$scope.resh.noon.hd = times.solarNoon.format( 'shortTime' );
+		$scope.resh.set.hd = times.sunset.format( 'shortTime' );
+		$scope.resh.nadir.hd = times.nadir.format( 'shortTime' );
+		$scope.resh.rise.td = $sce.trustAsHtml(removeAnno(get_thelemic_date(times.sunrise)));
+		$scope.resh.noon.td = $sce.trustAsHtml(removeAnno(get_thelemic_date(times.solarNoon)));
+		$scope.resh.set.td = $sce.trustAsHtml(removeAnno(get_thelemic_date(times.sunset)));
+		$scope.resh.nadir.td = $sce.trustAsHtml(removeAnno(get_thelemic_date(times.nadir)));
+		$scope.day = hours.day;
+		$scope.night = hours.night;
+		$scope.curr_planets = get_planets( date );
 	}
 
-	function set_date( date ) {
-		for (var i in today)
-		{
-			if ($_.isString(today[i]))
-				$scope[i] = $sce.trustAsHtml(today[i]);
-			else
-				$scope[i] = today[i];
-
-		}
+	function removeAnno(str) {
+		str = str.substring( 0, str.indexOf("Anno"));
+		return str;
 	}
 
-	var today = get_date( new Date() );
-	var tomorrow = get_date( new Date(new Date().getTime() + 24 * 60 * 60 * 1000) );
-
-	set_date(today);
-
-	jQuery('.datepicker input').datepicker({
+	// JQuery-ui datepicker
+	$('.datepicker input').datepicker({
 		dateFormat : "mm/dd/yy",
 		onSelect : function (date, inst) {
 			var dateObj = new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay);
-			var astrodate = get_date( dateObj );
-
+			$log.log(date, inst, dateObj);
+			set_date(dateObj);
+			$scope.$apply();
 		}
 	});
+
+	var today = new Date();
+
+	$scope.resh = [];
+	$scope.resh.rise = [];
+	$scope.resh.noon = [];
+	$scope.resh.set = [];
+	$scope.resh.nadir = [];
+
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position){
+			$scope.$apply(function(){
+				set_date(today, position.coords.latitude, position.coords.longitude);
+			});
+		}, function(errMsg){
+			set_date(today, '45.5379', '-122.714');
+		});
+	} else {
+		set_date(today, '45.5379', '-122.714');
+	}
+
+	$scope.hours = Array.apply(null, {length: 24}).map(Number.call, Number);
+	$scope.minutes = Array.apply(null, {length: 60}).map(Number.call, Number);
+	$scope.date = today.format('mm/dd/yy');
+	$scope.hour = today.format('H');
+	$scope.minute = today.format('MM');
 });
